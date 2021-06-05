@@ -14,10 +14,21 @@ public class TermExpression {
     public TermOperations operation;
 
     public TermExpression(ParseTree firstValueContext, ParseTree secondValueContext, ParseTree operationContext) {
-
-        this.firstValue = firstValueContext.getChildCount() >= 3 ? !isArithm(firstValueContext) ? new TermExpression(firstValueContext.getChild(0), firstValueContext.getChild(2), firstValueContext.getChild(1)).evaluate() : new ArithmExpression(firstValueContext.getChild(0), firstValueContext.getChild(2), firstValueContext.getChild(1)).evaluate() : new TermExpression(firstValueContext.getChild(0)).evaluate();
-        this.secondValue = secondValueContext.getChildCount() >= 3 ? !isArithm(secondValueContext) ? new TermExpression(secondValueContext.getChild(0), secondValueContext.getChild(2), secondValueContext.getChild(1)).evaluate() : new ArithmExpression(secondValueContext.getChild(0), secondValueContext.getChild(2), secondValueContext.getChild(1)).evaluate() : new TermExpression(secondValueContext.getChild(0)).evaluate();
-        this.operation = operationContext.getText().equals("*") ? TermOperations.MULTIPLY : TermOperations.DIVIDE;
+        if(firstValueContext.getText().equals("(")){
+            this.firstValue = operationContext.getChildCount() >= 3 ? !isArithm(operationContext) ? new TermExpression(operationContext.getChild(0), operationContext.getChild(2), operationContext.getChild(1)).evaluate() : new ArithmExpression(operationContext.getChild(0), operationContext.getChild(2), operationContext.getChild(1)).evaluate() : new TermExpression(operationContext.getChild(0)).evaluate();
+            this.secondValue = 1.0;
+            this.operation = TermOperations.MULTIPLY;
+        }
+        else if(isArithm(operationContext)){
+            this.firstValue =  new ArithmExpression(firstValueContext, secondValueContext,operationContext).evaluate();
+            this.secondValue = 1.0;
+            this.operation = TermOperations.MULTIPLY;
+        }
+        else{
+            this.firstValue = firstValueContext.getChildCount() >= 3 ? !isArithm(firstValueContext) ? new TermExpression(firstValueContext.getChild(0), firstValueContext.getChild(2), firstValueContext.getChild(1)).evaluate() : new ArithmExpression(firstValueContext.getChild(0), firstValueContext.getChild(2), firstValueContext.getChild(1)).evaluate() : new TermExpression(firstValueContext.getChild(0)).evaluate();
+            this.secondValue = secondValueContext.getChildCount() >= 3 ? !isArithm(secondValueContext) ? new TermExpression(secondValueContext.getChild(0), secondValueContext.getChild(2), secondValueContext.getChild(1)).evaluate() : new ArithmExpression(secondValueContext.getChild(0), secondValueContext.getChild(2), secondValueContext.getChild(1)).evaluate() : new TermExpression(secondValueContext.getChild(0)).evaluate();
+            this.operation = operationContext.getText().equals("*") ? TermOperations.MULTIPLY : TermOperations.DIVIDE;
+        }
     }
     
     public TermExpression(ParseTree singleValueContext) {
