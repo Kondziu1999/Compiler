@@ -1,6 +1,8 @@
 package logic;
 
-public enum ArithmOperations {
+import org.antlr.v4.runtime.tree.ParseTree;
+
+enum ArithmOperations {
     PLUS,
     MINUS
 }
@@ -17,8 +19,14 @@ public class ArithmExpression {
     }
     
     public ArithmExpression(ParseTree singleValueContext) {
-        this.firstValue = Double.parseDouble(singleValueContext.getText());
+        if(singleValueContext == null){
+            this.firstValue = 0.0;
+            return;
+        }
+        this.firstValue = singleValueContext.getChildCount() >= 3 ? isTerm(singleValueContext) ? new TermExpression(singleValueContext.getChild(0), singleValueContext.getChild(2), singleValueContext.getChild(1)).evaluate() : new ArithmExpression(singleValueContext.getChild(0), singleValueContext.getChild(2), singleValueContext.getChild(1)).evaluate() : Double.parseDouble(singleValueContext.getText());
     }
+
+
 
     public Double evaluate() {
         if (secondValue == null) {

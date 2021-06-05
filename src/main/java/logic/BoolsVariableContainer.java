@@ -1,7 +1,9 @@
 package logic;
 
+import java.util.HashMap;
+
 public class BoolsVariableContainer {
-    private HashMap<String, Boolean> variables;
+    private HashMap<String, Boolean> variables = new HashMap<>();
 
     public boolean containsVariable(String name){
         return variables.containsKey(name);
@@ -9,7 +11,7 @@ public class BoolsVariableContainer {
 
     public void setVariable(BoolVariable boolVariable){
         if (variables.containsKey(boolVariable.name)){
-            variables[boolVariable.name] = boolVariable.value;
+            variables.replace(boolVariable.name,boolVariable.value);
             return;
         }
 

@@ -1,7 +1,9 @@
 package logic;
 
+import java.util.HashMap;
+
 public class StringsVariableContainer {
-    private HashMap<String, String> variables;
+    private HashMap<String, String> variables = new HashMap<>();
 
     public boolean containsVariable(String name){
         return variables.containsKey(name);
@@ -9,7 +11,7 @@ public class StringsVariableContainer {
 
     public void setVariable(StringVariable stringVariable){
         if (variables.containsKey(stringVariable.name)){
-            variables[stringVariable.name] = stringVariable.value;
+            variables.replace(stringVariable.name, stringVariable.value);
             return;
         }
 

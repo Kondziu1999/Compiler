@@ -2,6 +2,7 @@ package parser;
 
 import data.*;
 import javafx.util.Pair;
+import logic.*;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.ParseTree;
@@ -104,13 +105,15 @@ public class CalculationListener extends EZPython4BaseListener {
                 var boolVariable = new BoolVariable(name, logicExprStack.pop());
 
                 boolsVariables.setVariable(boolVariable);
+                System.out.println(boolVariable.value.toString());
             }
             break;
             case "int":
             {
-                var numberVariable = new NumberVariable(name, arithExprStack.pop());
+                var numberVariable = new NumberVariable(name, arithmValues.pop());
 
                 numbersVariables.setVariable(numberVariable);
+                System.out.println(numberVariable.value.toString());
             }
             break;
             case "string":
@@ -118,9 +121,11 @@ public class CalculationListener extends EZPython4BaseListener {
                 var stringVariable = new StringVariable(name, /* TODO: Stringvalue */null);
 
                 stringsVariables.setVariable(stringVariable);
+                System.out.println(stringVariable.value.toString());
             }
             break;
         }
+
     }
 
 
@@ -143,9 +148,9 @@ public class CalculationListener extends EZPython4BaseListener {
     //     return ctx.getRuleContext() instanceof EZPython4Parser.ArithmExprContext || ctx.getRuleContext() instanceof EZPython4Parser.TermContext;
     // }
 
-    // private boolean hasParentThatCouldBeEvaluated2(ParserRuleContext ctx) {
-    //     return ctx.getRuleContext() instanceof EZPython4Parser.LogicExprContext;
-    // }
+     private boolean hasParentThatCouldBeEvaluated2(ParserRuleContext ctx) {
+         return ctx.getRuleContext() instanceof EZPython4Parser.LogicExprContext;
+     }
 
     // private boolean isTerm(ParseTree child) {
     //     return (child.getText().contains("*") || child.getText().contains("/"));
