@@ -19,7 +19,16 @@ public class CalculationListener extends EZPython4BaseListener {
     private MatrixAggregator aggregator;
 
     private FirstPhaseStack stack;
-    private VariableRegister variableRegister;
+    
+    // OUR STUFF:
+    private NumbersVariableContainer numbersVariables;
+    private BoolsVariableContainer boolsVariables;
+    private StringsVariableContainer stringsVariables;
+
+    private Stack<Double> arithmValues = new Stack<Double>();
+
+
+
     private int mainInstructionStackNum = 0;
     private Stack<Integer> whileInstructionsCounter = new Stack<Integer>();
     private Stack<Integer> arithExprStack = new Stack<Integer>();
@@ -29,9 +38,12 @@ public class CalculationListener extends EZPython4BaseListener {
 
     public CalculationListener(MatrixAggregator aggregator) {
         this.aggregator = aggregator;
-        variableRegister = new VariableRegister();
         stack = new FirstPhaseStack();
 
+
+        numbersVariables = new NumbersVariableContainer();
+        boolsVariables = new BoolsVariableContainer();
+        stringsVariables = new StringsVariableContainer();
     }
 
     public boolean CheckInstructionStack(){
@@ -83,18 +95,32 @@ public class CalculationListener extends EZPython4BaseListener {
     }
 
     @Override public void exitVariableStmt(EZPython4Parser.VariableStmtContext ctx) {
-        var value = ctx.value();
+        var name = ctx.VARIABLE_T().getText();
         var type = ctx.type() == null ? ctx.BOOL_TYPE_T() : ctx.type();
 
-        var variableValue = value == null ?
-                type.getText().equals("bool") ?
-                        logicExprStack.pop().toString()
-                        : arithExprStack.pop().toString()
-                : value.getText();
+        switch (type.getText()) {
+            case "bool":
+            {
+                var boolVariable = new BoolVariable(name, logicExprStack.pop());
 
-        Variable variable =  new Variable(variableValue, variableRegister);
-        stack.push(variable);
-        System.out.println(variable.toString());
+                boolsVariables.setVariable(boolVariable);
+            }
+            break;
+            case "int":
+            {
+                var numberVariable = new NumberVariable(name, arithExprStack.pop());
+
+                numbersVariables.setVariable(numberVariable);
+            }
+            break;
+            case "string":
+            {
+                var stringVariable = new StringVariable(name, /* TODO: Stringvalue */null);
+
+                stringsVariables.setVariable(stringVariable);
+            }
+            break;
+        }
     }
 
 
@@ -105,36 +131,25 @@ public class CalculationListener extends EZPython4BaseListener {
             System.out.println(x + "---" + ctx.getChild(x).getText());
         }
 
-        if (childCount == 1 && !isTerm(ctx.getChild(0))) {
-            if (hasParentThatCouldBeEvaluated(ctx.getParent())) {
-                return; // Bo parent sobie stacka da
-            }
-            arithExprStack.push(Integer.parseInt(ctx.getChild(0).getText()));
-        }
-
         if (childCount >= 3) // to rozpatrujemy tylko
         {
-            var firstValue = ctx.getChild(0).getChildCount() >= 3 || isTerm(ctx.getChild(0))  ? arithExprStack.pop() : Integer.parseInt(ctx.getChild(0).getText());
+            var arithmExpression = new ArithmExpression(ctx.getChild(0), ctx.getChild(2), ctx.getChild(1));
 
-            var secondValue = ctx.getChild(2).getChildCount() >= 3 || isTerm(ctx.getChild(2)) ? arithExprStack.pop() : Integer.parseInt(ctx.getChild(2).getText());
-            var calculatedValue = ctx.getChild(1).getText().equals("+") ? firstValue + secondValue : firstValue - secondValue;
-
-            arithExprStack.push(calculatedValue);
+            arithmValues.push(arithmExpression.evaluate());
         }
-
     }
 
-    private boolean hasParentThatCouldBeEvaluated(ParserRuleContext ctx) {
-        return ctx.getRuleContext() instanceof EZPython4Parser.ArithmExprContext || ctx.getRuleContext() instanceof EZPython4Parser.TermContext;
-    }
+    // private boolean hasParentThatCouldBeEvaluated(ParserRuleContext ctx) {
+    //     return ctx.getRuleContext() instanceof EZPython4Parser.ArithmExprContext || ctx.getRuleContext() instanceof EZPython4Parser.TermContext;
+    // }
 
-    private boolean hasParentThatCouldBeEvaluated2(ParserRuleContext ctx) {
-        return ctx.getRuleContext() instanceof EZPython4Parser.LogicExprContext;
-    }
+    // private boolean hasParentThatCouldBeEvaluated2(ParserRuleContext ctx) {
+    //     return ctx.getRuleContext() instanceof EZPython4Parser.LogicExprContext;
+    // }
 
-    private boolean isTerm(ParseTree child) {
-        return (child.getText().contains("*") || child.getText().contains("/"));
-    }
+    // private boolean isTerm(ParseTree child) {
+    //     return (child.getText().contains("*") || child.getText().contains("/"));
+    // }
 
     @Override public void exitTerm(EZPython4Parser.TermContext ctx) {
         var childCount = ctx.getChildCount();
@@ -142,26 +157,11 @@ public class CalculationListener extends EZPython4BaseListener {
             System.out.println(x + "+++" + ctx.getChild(x).getText());
         }
 
-        if (childCount == 1) {
-            if (hasParentThatCouldBeEvaluated(ctx.getParent())) {
-                return; // Bo parent sobie stacka da
-            }
-            arithExprStack.push(Integer.parseInt(ctx.getChild(0).getText()));
-        }
-
         if (childCount >= 3) // to rozpatrujemy tylko
         {
-            if (ctx.getChild(0).getText().equalsIgnoreCase("("))
-            {
-                return;
-            }
+            var termExpression = new TermExpression(ctx.getChild(0), ctx.getChild(2), ctx.getChild(1));
 
-            var firstValue = ctx.getChild(0).getChildCount() >= 3 ? arithExprStack.pop() : Integer.parseInt(ctx.getChild(0).getText());
-
-            var secondValue = ctx.getChild(2).getChildCount() >= 3 ? arithExprStack.pop() : Integer.parseInt(ctx.getChild(2).getText());
-            var calculatedValue = ctx.getChild(1).getText().equals("*") ? firstValue * secondValue : firstValue / secondValue;
-
-            arithExprStack.push(calculatedValue);
+            arithmValues.push(termExpression.evaluate());
         }
     }
 
