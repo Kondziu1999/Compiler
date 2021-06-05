@@ -94,6 +94,7 @@ public class CalculationListener extends EZPython4BaseListener {
     }
 
     @Override public void exitVariableStmt(EZPython4Parser.VariableStmtContext ctx) {
+
         var name = ctx.VARIABLE_T().getText();
         var type = ctx.type() == null ? ctx.BOOL_TYPE_T() : ctx.type();
 
@@ -138,6 +139,7 @@ public class CalculationListener extends EZPython4BaseListener {
         {
             var arithmExpression = new ArithmExpression(ctx.getChild(0), ctx.getChild(2), ctx.getChild(1));
 
+            System.out.println("stackarith" + arithmExpression.evaluate().toString());
             arithmValues.push(arithmExpression.evaluate());
         }
     }
@@ -164,6 +166,7 @@ public class CalculationListener extends EZPython4BaseListener {
         {
             var termExpression = new TermExpression(ctx.getChild(0), ctx.getChild(2), ctx.getChild(1));
 
+            System.out.println("stackterm" + termExpression.evaluate().toString());
             arithmValues.push(termExpression.evaluate());
         }
     }
