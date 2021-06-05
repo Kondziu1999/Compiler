@@ -1,0 +1,4 @@
+int result = (2 + 3 * 2 * (2 - 30));
+int result2 = result * 2;
+
+
