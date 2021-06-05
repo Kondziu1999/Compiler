@@ -45,8 +45,7 @@ public class TermExpression {
         } catch (Exception e) {
             // This means that text is a variable
             return NumbersVariableContainer.getValue(text);
-            
-            return Double.parseDouble("XDD");
+
         }
     }
 

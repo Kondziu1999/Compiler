@@ -2,6 +2,14 @@ grammar EZPython4;
 @header { package parser;}
 
 
+
+EQ:             '==';
+NEQ:            '≠';
+LTE:            '<=';
+GTE:            '>=';
+GT:             '>';
+LT:             '<';
+
 PLUS_T:         '+' ;
 MINUS_T:        '-' ;
 MUL_T:          '*' ;
@@ -66,24 +74,25 @@ logicalVal:
 logicExpr:
     logicalAND
     | logicalOR
-    | logicalTerm;
+    | logicalTerm
+    | logicalVal;
 
 
 logicalOR:
-    logicalTerm OR_T logicalTerm;
+    logicalVal OR_T logicalVal
+    | logicalTerm OR_T logicalTerm
+    | logicalTerm OR_T logicalVal
+    | logicalVal OR_T logicalTerm;
 
 logicalAND:
-    logicalTerm AND_T logicalTerm;
+    logicalVal AND_T logicalVal
+    | logicalTerm AND_T logicalTerm
+    | logicalTerm AND_T logicalVal
+    | logicalVal AND_T logicalTerm;
 
 logicalTerm:
-	logicalNOT
-    | logicalResult;
-
-logicalNOT:
-	NOT_T logicalTerm;
-
-logicalResult:
-    logicalVal;
+    value (EQ|NEQ|GTE|LTE|GT|LT) value
+    |value;
 
 
 number:

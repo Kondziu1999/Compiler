@@ -1,4 +1,4 @@
-// Generated from EZPython4.g4 by ANTLR 4.7.2
+// Generated from src\main\java\parser\EZPython4.g4 by ANTLR 4.7.2
  package parser;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
@@ -17,40 +17,39 @@ public class EZPython4Parser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		PLUS_T=1, MINUS_T=2, MUL_T=3, DIV_T=4, RBRACKET_T=5, LBRACKET_T=6, ASSIGN_T=7, 
-		TRUE_T=8, FALSE_T=9, OR_T=10, NOT_T=11, AND_T=12, END_LINE_T=13, NL_T=14, 
-		INT_TYPE_T=15, BOOL_TYPE_T=16, WHILE_T=17, LBRACE_T=18, RBRACE_T=19, INT_T=20, 
-		VARIABLE_T=21, WHITESPACE_T=22;
+		EQ=1, NEQ=2, LTE=3, GTE=4, GT=5, LT=6, PLUS_T=7, MINUS_T=8, MUL_T=9, DIV_T=10, 
+		RBRACKET_T=11, LBRACKET_T=12, ASSIGN_T=13, TRUE_T=14, FALSE_T=15, OR_T=16, 
+		NOT_T=17, AND_T=18, END_LINE_T=19, NL_T=20, INT_TYPE_T=21, BOOL_TYPE_T=22, 
+		WHILE_T=23, LBRACE_T=24, RBRACE_T=25, INT_T=26, VARIABLE_T=27, WHITESPACE_T=28;
 	public static final int
 		RULE_program = 0, RULE_stmt = 1, RULE_expr = 2, RULE_arithmExpr = 3, RULE_term = 4, 
 		RULE_variableStmt = 5, RULE_value = 6, RULE_logicalVal = 7, RULE_logicExpr = 8, 
-		RULE_logicalOR = 9, RULE_logicalAND = 10, RULE_logicalTerm = 11, RULE_logicalNOT = 12, 
-		RULE_logicalResult = 13, RULE_number = 14, RULE_type = 15, RULE_numberType = 16, 
-		RULE_codeSection = 17, RULE_whileStmt = 18;
+		RULE_logicalOR = 9, RULE_logicalAND = 10, RULE_logicalTerm = 11, RULE_number = 12, 
+		RULE_type = 13, RULE_numberType = 14, RULE_codeSection = 15, RULE_whileStmt = 16;
 	private static String[] makeRuleNames() {
 		return new String[] {
 			"program", "stmt", "expr", "arithmExpr", "term", "variableStmt", "value", 
 			"logicalVal", "logicExpr", "logicalOR", "logicalAND", "logicalTerm", 
-			"logicalNOT", "logicalResult", "number", "type", "numberType", "codeSection", 
-			"whileStmt"
+			"number", "type", "numberType", "codeSection", "whileStmt"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "'+'", "'-'", "'*'", "'/'", "')'", "'('", "'='", "'true'", "'false'", 
-			"'or'", "'not'", "'and'", "';'", "'\n'", "'int'", "'bool'", "'while'", 
-			"'{'", "'}'"
+			null, "'=='", "'\u00E2\u2030\u00A0'", "'<='", "'>='", "'>'", "'<'", "'+'", 
+			"'-'", "'*'", "'/'", "')'", "'('", "'='", "'true'", "'false'", "'or'", 
+			"'not'", "'and'", "';'", "'\n'", "'int'", "'bool'", "'while'", "'{'", 
+			"'}'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, "PLUS_T", "MINUS_T", "MUL_T", "DIV_T", "RBRACKET_T", "LBRACKET_T", 
-			"ASSIGN_T", "TRUE_T", "FALSE_T", "OR_T", "NOT_T", "AND_T", "END_LINE_T", 
-			"NL_T", "INT_TYPE_T", "BOOL_TYPE_T", "WHILE_T", "LBRACE_T", "RBRACE_T", 
-			"INT_T", "VARIABLE_T", "WHITESPACE_T"
+			null, "EQ", "NEQ", "LTE", "GTE", "GT", "LT", "PLUS_T", "MINUS_T", "MUL_T", 
+			"DIV_T", "RBRACKET_T", "LBRACKET_T", "ASSIGN_T", "TRUE_T", "FALSE_T", 
+			"OR_T", "NOT_T", "AND_T", "END_LINE_T", "NL_T", "INT_TYPE_T", "BOOL_TYPE_T", 
+			"WHILE_T", "LBRACE_T", "RBRACE_T", "INT_T", "VARIABLE_T", "WHITESPACE_T"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -137,12 +136,12 @@ public class EZPython4Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(42);
+			setState(38);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << LBRACKET_T) | (1L << NL_T) | (1L << INT_TYPE_T) | (1L << BOOL_TYPE_T) | (1L << WHILE_T) | (1L << INT_T) | (1L << VARIABLE_T))) != 0)) {
 				{
-				setState(40);
+				setState(36);
 				_errHandler.sync(this);
 				switch (_input.LA(1)) {
 				case LBRACKET_T:
@@ -152,13 +151,13 @@ public class EZPython4Parser extends Parser {
 				case INT_T:
 				case VARIABLE_T:
 					{
-					setState(38);
+					setState(34);
 					stmt();
 					}
 					break;
 				case NL_T:
 					{
-					setState(39);
+					setState(35);
 					match(NL_T);
 					}
 					break;
@@ -166,11 +165,11 @@ public class EZPython4Parser extends Parser {
 					throw new NoViableAltException(this);
 				}
 				}
-				setState(44);
+				setState(40);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(45);
+			setState(41);
 			match(EOF);
 			}
 		}
@@ -215,27 +214,27 @@ public class EZPython4Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(50);
+			setState(46);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case LBRACKET_T:
 			case INT_T:
 			case VARIABLE_T:
 				{
-				setState(47);
+				setState(43);
 				expr();
 				}
 				break;
 			case INT_TYPE_T:
 			case BOOL_TYPE_T:
 				{
-				setState(48);
+				setState(44);
 				variableStmt();
 				}
 				break;
 			case WHILE_T:
 				{
-				setState(49);
+				setState(45);
 				whileStmt();
 				}
 				break;
@@ -279,7 +278,7 @@ public class EZPython4Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(52);
+			setState(48);
 			arithmExpr(0);
 			}
 		}
@@ -337,11 +336,11 @@ public class EZPython4Parser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			{
-			setState(55);
+			setState(51);
 			term(0);
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(62);
+			setState(58);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,3,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
@@ -352,9 +351,9 @@ public class EZPython4Parser extends Parser {
 					{
 					_localctx = new ArithmExprContext(_parentctx, _parentState);
 					pushNewRecursionContext(_localctx, _startState, RULE_arithmExpr);
-					setState(57);
+					setState(53);
 					if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
-					setState(58);
+					setState(54);
 					_la = _input.LA(1);
 					if ( !(_la==PLUS_T || _la==MINUS_T) ) {
 					_errHandler.recoverInline(this);
@@ -364,12 +363,12 @@ public class EZPython4Parser extends Parser {
 						_errHandler.reportMatch(this);
 						consume();
 					}
-					setState(59);
+					setState(55);
 					arithmExpr(3);
 					}
 					} 
 				}
-				setState(64);
+				setState(60);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,3,_ctx);
 			}
@@ -433,23 +432,23 @@ public class EZPython4Parser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(71);
+			setState(67);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case LBRACKET_T:
 				{
-				setState(66);
+				setState(62);
 				match(LBRACKET_T);
-				setState(67);
+				setState(63);
 				arithmExpr(0);
-				setState(68);
+				setState(64);
 				match(RBRACKET_T);
 				}
 				break;
 			case INT_T:
 			case VARIABLE_T:
 				{
-				setState(70);
+				setState(66);
 				value();
 				}
 				break;
@@ -457,7 +456,7 @@ public class EZPython4Parser extends Parser {
 				throw new NoViableAltException(this);
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(78);
+			setState(74);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,5,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
@@ -468,9 +467,9 @@ public class EZPython4Parser extends Parser {
 					{
 					_localctx = new TermContext(_parentctx, _parentState);
 					pushNewRecursionContext(_localctx, _startState, RULE_term);
-					setState(73);
+					setState(69);
 					if (!(precpred(_ctx, 3))) throw new FailedPredicateException(this, "precpred(_ctx, 3)");
-					setState(74);
+					setState(70);
 					_la = _input.LA(1);
 					if ( !(_la==MUL_T || _la==DIV_T) ) {
 					_errHandler.recoverInline(this);
@@ -480,12 +479,12 @@ public class EZPython4Parser extends Parser {
 						_errHandler.reportMatch(this);
 						consume();
 					}
-					setState(75);
+					setState(71);
 					term(4);
 					}
 					} 
 				}
-				setState(80);
+				setState(76);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,5,_ctx);
 			}
@@ -537,50 +536,50 @@ public class EZPython4Parser extends Parser {
 		VariableStmtContext _localctx = new VariableStmtContext(_ctx, getState());
 		enterRule(_localctx, 10, RULE_variableStmt);
 		try {
-			setState(96);
+			setState(92);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case BOOL_TYPE_T:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(81);
+				setState(77);
 				match(BOOL_TYPE_T);
-				setState(82);
+				setState(78);
 				match(VARIABLE_T);
-				setState(83);
+				setState(79);
 				match(ASSIGN_T);
-				setState(84);
+				setState(80);
 				logicExpr();
-				setState(85);
+				setState(81);
 				match(END_LINE_T);
 				}
 				break;
 			case INT_TYPE_T:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(87);
+				setState(83);
 				type();
-				setState(88);
+				setState(84);
 				match(VARIABLE_T);
-				setState(89);
+				setState(85);
 				match(ASSIGN_T);
-				setState(92);
+				setState(88);
 				_errHandler.sync(this);
 				switch ( getInterpreter().adaptivePredict(_input,6,_ctx) ) {
 				case 1:
 					{
-					setState(90);
+					setState(86);
 					value();
 					}
 					break;
 				case 2:
 					{
-					setState(91);
+					setState(87);
 					arithmExpr(0);
 					}
 					break;
 				}
-				setState(94);
+				setState(90);
 				match(END_LINE_T);
 				}
 				break;
@@ -600,10 +599,10 @@ public class EZPython4Parser extends Parser {
 	}
 
 	public static class ValueContext extends ParserRuleContext {
+		public TerminalNode VARIABLE_T() { return getToken(EZPython4Parser.VARIABLE_T, 0); }
 		public NumberContext number() {
 			return getRuleContext(NumberContext.class,0);
 		}
-		public TerminalNode VARIABLE_T() { return getToken(EZPython4Parser.VARIABLE_T, 0); }
 		public ValueContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -622,21 +621,21 @@ public class EZPython4Parser extends Parser {
 		ValueContext _localctx = new ValueContext(_ctx, getState());
 		enterRule(_localctx, 12, RULE_value);
 		try {
-			setState(100);
+			setState(96);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
-			case INT_T:
+			case VARIABLE_T:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(98);
-				number();
+				setState(94);
+				match(VARIABLE_T);
 				}
 				break;
-			case VARIABLE_T:
+			case INT_T:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(99);
-				match(VARIABLE_T);
+				setState(95);
+				number();
 				}
 				break;
 			default:
@@ -678,7 +677,7 @@ public class EZPython4Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(102);
+			setState(98);
 			_la = _input.LA(1);
 			if ( !(_la==TRUE_T || _la==FALSE_T) ) {
 			_errHandler.recoverInline(this);
@@ -711,6 +710,9 @@ public class EZPython4Parser extends Parser {
 		public LogicalTermContext logicalTerm() {
 			return getRuleContext(LogicalTermContext.class,0);
 		}
+		public LogicalValContext logicalVal() {
+			return getRuleContext(LogicalValContext.class,0);
+		}
 		public LogicExprContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -729,28 +731,35 @@ public class EZPython4Parser extends Parser {
 		LogicExprContext _localctx = new LogicExprContext(_ctx, getState());
 		enterRule(_localctx, 16, RULE_logicExpr);
 		try {
-			setState(107);
+			setState(104);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,9,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(104);
+				setState(100);
 				logicalAND();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(105);
+				setState(101);
 				logicalOR();
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(106);
+				setState(102);
 				logicalTerm();
+				}
+				break;
+			case 4:
+				enterOuterAlt(_localctx, 4);
+				{
+				setState(103);
+				logicalVal();
 				}
 				break;
 			}
@@ -767,13 +776,19 @@ public class EZPython4Parser extends Parser {
 	}
 
 	public static class LogicalORContext extends ParserRuleContext {
+		public List<LogicalValContext> logicalVal() {
+			return getRuleContexts(LogicalValContext.class);
+		}
+		public LogicalValContext logicalVal(int i) {
+			return getRuleContext(LogicalValContext.class,i);
+		}
+		public TerminalNode OR_T() { return getToken(EZPython4Parser.OR_T, 0); }
 		public List<LogicalTermContext> logicalTerm() {
 			return getRuleContexts(LogicalTermContext.class);
 		}
 		public LogicalTermContext logicalTerm(int i) {
 			return getRuleContext(LogicalTermContext.class,i);
 		}
-		public TerminalNode OR_T() { return getToken(EZPython4Parser.OR_T, 0); }
 		public LogicalORContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -792,14 +807,53 @@ public class EZPython4Parser extends Parser {
 		LogicalORContext _localctx = new LogicalORContext(_ctx, getState());
 		enterRule(_localctx, 18, RULE_logicalOR);
 		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(109);
-			logicalTerm();
-			setState(110);
-			match(OR_T);
-			setState(111);
-			logicalTerm();
+			setState(122);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,10,_ctx) ) {
+			case 1:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(106);
+				logicalVal();
+				setState(107);
+				match(OR_T);
+				setState(108);
+				logicalVal();
+				}
+				break;
+			case 2:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(110);
+				logicalTerm();
+				setState(111);
+				match(OR_T);
+				setState(112);
+				logicalTerm();
+				}
+				break;
+			case 3:
+				enterOuterAlt(_localctx, 3);
+				{
+				setState(114);
+				logicalTerm();
+				setState(115);
+				match(OR_T);
+				setState(116);
+				logicalVal();
+				}
+				break;
+			case 4:
+				enterOuterAlt(_localctx, 4);
+				{
+				setState(118);
+				logicalVal();
+				setState(119);
+				match(OR_T);
+				setState(120);
+				logicalTerm();
+				}
+				break;
 			}
 		}
 		catch (RecognitionException re) {
@@ -814,13 +868,19 @@ public class EZPython4Parser extends Parser {
 	}
 
 	public static class LogicalANDContext extends ParserRuleContext {
+		public List<LogicalValContext> logicalVal() {
+			return getRuleContexts(LogicalValContext.class);
+		}
+		public LogicalValContext logicalVal(int i) {
+			return getRuleContext(LogicalValContext.class,i);
+		}
+		public TerminalNode AND_T() { return getToken(EZPython4Parser.AND_T, 0); }
 		public List<LogicalTermContext> logicalTerm() {
 			return getRuleContexts(LogicalTermContext.class);
 		}
 		public LogicalTermContext logicalTerm(int i) {
 			return getRuleContext(LogicalTermContext.class,i);
 		}
-		public TerminalNode AND_T() { return getToken(EZPython4Parser.AND_T, 0); }
 		public LogicalANDContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -839,14 +899,53 @@ public class EZPython4Parser extends Parser {
 		LogicalANDContext _localctx = new LogicalANDContext(_ctx, getState());
 		enterRule(_localctx, 20, RULE_logicalAND);
 		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(113);
-			logicalTerm();
-			setState(114);
-			match(AND_T);
-			setState(115);
-			logicalTerm();
+			setState(140);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,11,_ctx) ) {
+			case 1:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(124);
+				logicalVal();
+				setState(125);
+				match(AND_T);
+				setState(126);
+				logicalVal();
+				}
+				break;
+			case 2:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(128);
+				logicalTerm();
+				setState(129);
+				match(AND_T);
+				setState(130);
+				logicalTerm();
+				}
+				break;
+			case 3:
+				enterOuterAlt(_localctx, 3);
+				{
+				setState(132);
+				logicalTerm();
+				setState(133);
+				match(AND_T);
+				setState(134);
+				logicalVal();
+				}
+				break;
+			case 4:
+				enterOuterAlt(_localctx, 4);
+				{
+				setState(136);
+				logicalVal();
+				setState(137);
+				match(AND_T);
+				setState(138);
+				logicalTerm();
+				}
+				break;
 			}
 		}
 		catch (RecognitionException re) {
@@ -861,12 +960,18 @@ public class EZPython4Parser extends Parser {
 	}
 
 	public static class LogicalTermContext extends ParserRuleContext {
-		public LogicalNOTContext logicalNOT() {
-			return getRuleContext(LogicalNOTContext.class,0);
+		public List<ValueContext> value() {
+			return getRuleContexts(ValueContext.class);
 		}
-		public LogicalResultContext logicalResult() {
-			return getRuleContext(LogicalResultContext.class,0);
+		public ValueContext value(int i) {
+			return getRuleContext(ValueContext.class,i);
 		}
+		public TerminalNode EQ() { return getToken(EZPython4Parser.EQ, 0); }
+		public TerminalNode NEQ() { return getToken(EZPython4Parser.NEQ, 0); }
+		public TerminalNode GTE() { return getToken(EZPython4Parser.GTE, 0); }
+		public TerminalNode LTE() { return getToken(EZPython4Parser.LTE, 0); }
+		public TerminalNode GT() { return getToken(EZPython4Parser.GT, 0); }
+		public TerminalNode LT() { return getToken(EZPython4Parser.LT, 0); }
 		public LogicalTermContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -884,108 +989,37 @@ public class EZPython4Parser extends Parser {
 	public final LogicalTermContext logicalTerm() throws RecognitionException {
 		LogicalTermContext _localctx = new LogicalTermContext(_ctx, getState());
 		enterRule(_localctx, 22, RULE_logicalTerm);
+		int _la;
 		try {
-			setState(119);
+			setState(147);
 			_errHandler.sync(this);
-			switch (_input.LA(1)) {
-			case NOT_T:
+			switch ( getInterpreter().adaptivePredict(_input,12,_ctx) ) {
+			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(117);
-				logicalNOT();
+				setState(142);
+				value();
+				setState(143);
+				_la = _input.LA(1);
+				if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << EQ) | (1L << NEQ) | (1L << LTE) | (1L << GTE) | (1L << GT) | (1L << LT))) != 0)) ) {
+				_errHandler.recoverInline(this);
+				}
+				else {
+					if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+					_errHandler.reportMatch(this);
+					consume();
+				}
+				setState(144);
+				value();
 				}
 				break;
-			case TRUE_T:
-			case FALSE_T:
+			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(118);
-				logicalResult();
+				setState(146);
+				value();
 				}
 				break;
-			default:
-				throw new NoViableAltException(this);
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class LogicalNOTContext extends ParserRuleContext {
-		public TerminalNode NOT_T() { return getToken(EZPython4Parser.NOT_T, 0); }
-		public LogicalTermContext logicalTerm() {
-			return getRuleContext(LogicalTermContext.class,0);
-		}
-		public LogicalNOTContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_logicalNOT; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof EZPython4Listener ) ((EZPython4Listener)listener).enterLogicalNOT(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof EZPython4Listener ) ((EZPython4Listener)listener).exitLogicalNOT(this);
-		}
-	}
-
-	public final LogicalNOTContext logicalNOT() throws RecognitionException {
-		LogicalNOTContext _localctx = new LogicalNOTContext(_ctx, getState());
-		enterRule(_localctx, 24, RULE_logicalNOT);
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(121);
-			match(NOT_T);
-			setState(122);
-			logicalTerm();
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class LogicalResultContext extends ParserRuleContext {
-		public LogicalValContext logicalVal() {
-			return getRuleContext(LogicalValContext.class,0);
-		}
-		public LogicalResultContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_logicalResult; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof EZPython4Listener ) ((EZPython4Listener)listener).enterLogicalResult(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof EZPython4Listener ) ((EZPython4Listener)listener).exitLogicalResult(this);
-		}
-	}
-
-	public final LogicalResultContext logicalResult() throws RecognitionException {
-		LogicalResultContext _localctx = new LogicalResultContext(_ctx, getState());
-		enterRule(_localctx, 26, RULE_logicalResult);
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(124);
-			logicalVal();
 			}
 		}
 		catch (RecognitionException re) {
@@ -1017,11 +1051,11 @@ public class EZPython4Parser extends Parser {
 
 	public final NumberContext number() throws RecognitionException {
 		NumberContext _localctx = new NumberContext(_ctx, getState());
-		enterRule(_localctx, 28, RULE_number);
+		enterRule(_localctx, 24, RULE_number);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(126);
+			setState(149);
 			match(INT_T);
 			}
 		}
@@ -1056,11 +1090,11 @@ public class EZPython4Parser extends Parser {
 
 	public final TypeContext type() throws RecognitionException {
 		TypeContext _localctx = new TypeContext(_ctx, getState());
-		enterRule(_localctx, 30, RULE_type);
+		enterRule(_localctx, 26, RULE_type);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(128);
+			setState(151);
 			numberType();
 			}
 		}
@@ -1093,11 +1127,11 @@ public class EZPython4Parser extends Parser {
 
 	public final NumberTypeContext numberType() throws RecognitionException {
 		NumberTypeContext _localctx = new NumberTypeContext(_ctx, getState());
-		enterRule(_localctx, 32, RULE_numberType);
+		enterRule(_localctx, 28, RULE_numberType);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(130);
+			setState(153);
 			match(INT_TYPE_T);
 			}
 		}
@@ -1135,22 +1169,22 @@ public class EZPython4Parser extends Parser {
 
 	public final CodeSectionContext codeSection() throws RecognitionException {
 		CodeSectionContext _localctx = new CodeSectionContext(_ctx, getState());
-		enterRule(_localctx, 34, RULE_codeSection);
+		enterRule(_localctx, 30, RULE_codeSection);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(135);
+			setState(158);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << LBRACKET_T) | (1L << INT_TYPE_T) | (1L << BOOL_TYPE_T) | (1L << WHILE_T) | (1L << INT_T) | (1L << VARIABLE_T))) != 0)) {
 				{
 				{
-				setState(132);
+				setState(155);
 				stmt();
 				}
 				}
-				setState(137);
+				setState(160);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -1195,23 +1229,23 @@ public class EZPython4Parser extends Parser {
 
 	public final WhileStmtContext whileStmt() throws RecognitionException {
 		WhileStmtContext _localctx = new WhileStmtContext(_ctx, getState());
-		enterRule(_localctx, 36, RULE_whileStmt);
+		enterRule(_localctx, 32, RULE_whileStmt);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(138);
+			setState(161);
 			match(WHILE_T);
-			setState(139);
+			setState(162);
 			match(LBRACKET_T);
-			setState(140);
+			setState(163);
 			logicExpr();
-			setState(141);
+			setState(164);
 			match(RBRACKET_T);
-			setState(142);
+			setState(165);
 			match(LBRACE_T);
-			setState(143);
+			setState(166);
 			codeSection();
-			setState(144);
+			setState(167);
 			match(RBRACE_T);
 			}
 		}
@@ -1251,44 +1285,54 @@ public class EZPython4Parser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\30\u0095\4\2\t\2"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\36\u00ac\4\2\t\2"+
 		"\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13"+
 		"\t\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
-		"\4\23\t\23\4\24\t\24\3\2\3\2\7\2+\n\2\f\2\16\2.\13\2\3\2\3\2\3\3\3\3\3"+
-		"\3\5\3\65\n\3\3\4\3\4\3\5\3\5\3\5\3\5\3\5\3\5\7\5?\n\5\f\5\16\5B\13\5"+
-		"\3\6\3\6\3\6\3\6\3\6\3\6\5\6J\n\6\3\6\3\6\3\6\7\6O\n\6\f\6\16\6R\13\6"+
-		"\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\5\7_\n\7\3\7\3\7\5\7c\n\7"+
-		"\3\b\3\b\5\bg\n\b\3\t\3\t\3\n\3\n\3\n\5\nn\n\n\3\13\3\13\3\13\3\13\3\f"+
-		"\3\f\3\f\3\f\3\r\3\r\5\rz\n\r\3\16\3\16\3\16\3\17\3\17\3\20\3\20\3\21"+
-		"\3\21\3\22\3\22\3\23\7\23\u0088\n\23\f\23\16\23\u008b\13\23\3\24\3\24"+
-		"\3\24\3\24\3\24\3\24\3\24\3\24\3\24\2\4\b\n\25\2\4\6\b\n\f\16\20\22\24"+
-		"\26\30\32\34\36 \"$&\2\5\3\2\3\4\3\2\5\6\3\2\n\13\2\u008f\2,\3\2\2\2\4"+
-		"\64\3\2\2\2\6\66\3\2\2\2\b8\3\2\2\2\nI\3\2\2\2\fb\3\2\2\2\16f\3\2\2\2"+
-		"\20h\3\2\2\2\22m\3\2\2\2\24o\3\2\2\2\26s\3\2\2\2\30y\3\2\2\2\32{\3\2\2"+
-		"\2\34~\3\2\2\2\36\u0080\3\2\2\2 \u0082\3\2\2\2\"\u0084\3\2\2\2$\u0089"+
-		"\3\2\2\2&\u008c\3\2\2\2(+\5\4\3\2)+\7\20\2\2*(\3\2\2\2*)\3\2\2\2+.\3\2"+
-		"\2\2,*\3\2\2\2,-\3\2\2\2-/\3\2\2\2.,\3\2\2\2/\60\7\2\2\3\60\3\3\2\2\2"+
-		"\61\65\5\6\4\2\62\65\5\f\7\2\63\65\5&\24\2\64\61\3\2\2\2\64\62\3\2\2\2"+
-		"\64\63\3\2\2\2\65\5\3\2\2\2\66\67\5\b\5\2\67\7\3\2\2\289\b\5\1\29:\5\n"+
-		"\6\2:@\3\2\2\2;<\f\4\2\2<=\t\2\2\2=?\5\b\5\5>;\3\2\2\2?B\3\2\2\2@>\3\2"+
-		"\2\2@A\3\2\2\2A\t\3\2\2\2B@\3\2\2\2CD\b\6\1\2DE\7\b\2\2EF\5\b\5\2FG\7"+
-		"\7\2\2GJ\3\2\2\2HJ\5\16\b\2IC\3\2\2\2IH\3\2\2\2JP\3\2\2\2KL\f\5\2\2LM"+
-		"\t\3\2\2MO\5\n\6\6NK\3\2\2\2OR\3\2\2\2PN\3\2\2\2PQ\3\2\2\2Q\13\3\2\2\2"+
-		"RP\3\2\2\2ST\7\22\2\2TU\7\27\2\2UV\7\t\2\2VW\5\22\n\2WX\7\17\2\2Xc\3\2"+
-		"\2\2YZ\5 \21\2Z[\7\27\2\2[^\7\t\2\2\\_\5\16\b\2]_\5\b\5\2^\\\3\2\2\2^"+
-		"]\3\2\2\2_`\3\2\2\2`a\7\17\2\2ac\3\2\2\2bS\3\2\2\2bY\3\2\2\2c\r\3\2\2"+
-		"\2dg\5\36\20\2eg\7\27\2\2fd\3\2\2\2fe\3\2\2\2g\17\3\2\2\2hi\t\4\2\2i\21"+
-		"\3\2\2\2jn\5\26\f\2kn\5\24\13\2ln\5\30\r\2mj\3\2\2\2mk\3\2\2\2ml\3\2\2"+
-		"\2n\23\3\2\2\2op\5\30\r\2pq\7\f\2\2qr\5\30\r\2r\25\3\2\2\2st\5\30\r\2"+
-		"tu\7\16\2\2uv\5\30\r\2v\27\3\2\2\2wz\5\32\16\2xz\5\34\17\2yw\3\2\2\2y"+
-		"x\3\2\2\2z\31\3\2\2\2{|\7\r\2\2|}\5\30\r\2}\33\3\2\2\2~\177\5\20\t\2\177"+
-		"\35\3\2\2\2\u0080\u0081\7\26\2\2\u0081\37\3\2\2\2\u0082\u0083\5\"\22\2"+
-		"\u0083!\3\2\2\2\u0084\u0085\7\21\2\2\u0085#\3\2\2\2\u0086\u0088\5\4\3"+
-		"\2\u0087\u0086\3\2\2\2\u0088\u008b\3\2\2\2\u0089\u0087\3\2\2\2\u0089\u008a"+
-		"\3\2\2\2\u008a%\3\2\2\2\u008b\u0089\3\2\2\2\u008c\u008d\7\23\2\2\u008d"+
-		"\u008e\7\b\2\2\u008e\u008f\5\22\n\2\u008f\u0090\7\7\2\2\u0090\u0091\7"+
-		"\24\2\2\u0091\u0092\5$\23\2\u0092\u0093\7\25\2\2\u0093\'\3\2\2\2\16*,"+
-		"\64@IP^bfmy\u0089";
+		"\3\2\3\2\7\2\'\n\2\f\2\16\2*\13\2\3\2\3\2\3\3\3\3\3\3\5\3\61\n\3\3\4\3"+
+		"\4\3\5\3\5\3\5\3\5\3\5\3\5\7\5;\n\5\f\5\16\5>\13\5\3\6\3\6\3\6\3\6\3\6"+
+		"\3\6\5\6F\n\6\3\6\3\6\3\6\7\6K\n\6\f\6\16\6N\13\6\3\7\3\7\3\7\3\7\3\7"+
+		"\3\7\3\7\3\7\3\7\3\7\3\7\5\7[\n\7\3\7\3\7\5\7_\n\7\3\b\3\b\5\bc\n\b\3"+
+		"\t\3\t\3\n\3\n\3\n\3\n\5\nk\n\n\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13"+
+		"\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\5\13}\n\13\3\f\3\f\3\f\3\f\3"+
+		"\f\3\f\3\f\3\f\3\f\3\f\3\f\3\f\3\f\3\f\3\f\3\f\5\f\u008f\n\f\3\r\3\r\3"+
+		"\r\3\r\3\r\5\r\u0096\n\r\3\16\3\16\3\17\3\17\3\20\3\20\3\21\7\21\u009f"+
+		"\n\21\f\21\16\21\u00a2\13\21\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3"+
+		"\22\2\4\b\n\23\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"\2\6\3\2\t\n\3"+
+		"\2\13\f\3\2\20\21\3\2\3\b\2\u00af\2(\3\2\2\2\4\60\3\2\2\2\6\62\3\2\2\2"+
+		"\b\64\3\2\2\2\nE\3\2\2\2\f^\3\2\2\2\16b\3\2\2\2\20d\3\2\2\2\22j\3\2\2"+
+		"\2\24|\3\2\2\2\26\u008e\3\2\2\2\30\u0095\3\2\2\2\32\u0097\3\2\2\2\34\u0099"+
+		"\3\2\2\2\36\u009b\3\2\2\2 \u00a0\3\2\2\2\"\u00a3\3\2\2\2$\'\5\4\3\2%\'"+
+		"\7\26\2\2&$\3\2\2\2&%\3\2\2\2\'*\3\2\2\2(&\3\2\2\2()\3\2\2\2)+\3\2\2\2"+
+		"*(\3\2\2\2+,\7\2\2\3,\3\3\2\2\2-\61\5\6\4\2.\61\5\f\7\2/\61\5\"\22\2\60"+
+		"-\3\2\2\2\60.\3\2\2\2\60/\3\2\2\2\61\5\3\2\2\2\62\63\5\b\5\2\63\7\3\2"+
+		"\2\2\64\65\b\5\1\2\65\66\5\n\6\2\66<\3\2\2\2\678\f\4\2\289\t\2\2\29;\5"+
+		"\b\5\5:\67\3\2\2\2;>\3\2\2\2<:\3\2\2\2<=\3\2\2\2=\t\3\2\2\2><\3\2\2\2"+
+		"?@\b\6\1\2@A\7\16\2\2AB\5\b\5\2BC\7\r\2\2CF\3\2\2\2DF\5\16\b\2E?\3\2\2"+
+		"\2ED\3\2\2\2FL\3\2\2\2GH\f\5\2\2HI\t\3\2\2IK\5\n\6\6JG\3\2\2\2KN\3\2\2"+
+		"\2LJ\3\2\2\2LM\3\2\2\2M\13\3\2\2\2NL\3\2\2\2OP\7\30\2\2PQ\7\35\2\2QR\7"+
+		"\17\2\2RS\5\22\n\2ST\7\25\2\2T_\3\2\2\2UV\5\34\17\2VW\7\35\2\2WZ\7\17"+
+		"\2\2X[\5\16\b\2Y[\5\b\5\2ZX\3\2\2\2ZY\3\2\2\2[\\\3\2\2\2\\]\7\25\2\2]"+
+		"_\3\2\2\2^O\3\2\2\2^U\3\2\2\2_\r\3\2\2\2`c\7\35\2\2ac\5\32\16\2b`\3\2"+
+		"\2\2ba\3\2\2\2c\17\3\2\2\2de\t\4\2\2e\21\3\2\2\2fk\5\26\f\2gk\5\24\13"+
+		"\2hk\5\30\r\2ik\5\20\t\2jf\3\2\2\2jg\3\2\2\2jh\3\2\2\2ji\3\2\2\2k\23\3"+
+		"\2\2\2lm\5\20\t\2mn\7\22\2\2no\5\20\t\2o}\3\2\2\2pq\5\30\r\2qr\7\22\2"+
+		"\2rs\5\30\r\2s}\3\2\2\2tu\5\30\r\2uv\7\22\2\2vw\5\20\t\2w}\3\2\2\2xy\5"+
+		"\20\t\2yz\7\22\2\2z{\5\30\r\2{}\3\2\2\2|l\3\2\2\2|p\3\2\2\2|t\3\2\2\2"+
+		"|x\3\2\2\2}\25\3\2\2\2~\177\5\20\t\2\177\u0080\7\24\2\2\u0080\u0081\5"+
+		"\20\t\2\u0081\u008f\3\2\2\2\u0082\u0083\5\30\r\2\u0083\u0084\7\24\2\2"+
+		"\u0084\u0085\5\30\r\2\u0085\u008f\3\2\2\2\u0086\u0087\5\30\r\2\u0087\u0088"+
+		"\7\24\2\2\u0088\u0089\5\20\t\2\u0089\u008f\3\2\2\2\u008a\u008b\5\20\t"+
+		"\2\u008b\u008c\7\24\2\2\u008c\u008d\5\30\r\2\u008d\u008f\3\2\2\2\u008e"+
+		"~\3\2\2\2\u008e\u0082\3\2\2\2\u008e\u0086\3\2\2\2\u008e\u008a\3\2\2\2"+
+		"\u008f\27\3\2\2\2\u0090\u0091\5\16\b\2\u0091\u0092\t\5\2\2\u0092\u0093"+
+		"\5\16\b\2\u0093\u0096\3\2\2\2\u0094\u0096\5\16\b\2\u0095\u0090\3\2\2\2"+
+		"\u0095\u0094\3\2\2\2\u0096\31\3\2\2\2\u0097\u0098\7\34\2\2\u0098\33\3"+
+		"\2\2\2\u0099\u009a\5\36\20\2\u009a\35\3\2\2\2\u009b\u009c\7\27\2\2\u009c"+
+		"\37\3\2\2\2\u009d\u009f\5\4\3\2\u009e\u009d\3\2\2\2\u009f\u00a2\3\2\2"+
+		"\2\u00a0\u009e\3\2\2\2\u00a0\u00a1\3\2\2\2\u00a1!\3\2\2\2\u00a2\u00a0"+
+		"\3\2\2\2\u00a3\u00a4\7\31\2\2\u00a4\u00a5\7\16\2\2\u00a5\u00a6\5\22\n"+
+		"\2\u00a6\u00a7\7\r\2\2\u00a7\u00a8\7\32\2\2\u00a8\u00a9\5 \21\2\u00a9"+
+		"\u00aa\7\33\2\2\u00aa#\3\2\2\2\20&(\60<ELZ^bj|\u008e\u0095\u00a0";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

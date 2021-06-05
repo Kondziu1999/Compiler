@@ -33,17 +33,16 @@ public class LogicExpression {
         } catch (Exception e) {
             // This means that text is a variable
             return BoolsVariableContainer.getValue(text);
-            
-            return Boolean.parseBoolean("XDD");
+
         }
     }
 
-    public Double evaluate() {
+    public Boolean evaluate() {
         if (secondValue == null) {
             return firstValue;
         }
 
-        return operation == ArithmOperations.AND ? firstValue && secondValue : firstValue || secondValue;
+        return operation == LogicOperations.AND ? firstValue && secondValue : firstValue || secondValue;
     }
 
     private boolean isTerm(ParseTree child) {

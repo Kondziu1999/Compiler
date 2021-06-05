@@ -38,11 +38,6 @@ public class CalculationListener extends EZPython4BaseListener {
     public CalculationListener(MatrixAggregator aggregator) {
         this.aggregator = aggregator;
         stack = new FirstPhaseStack();
-
-
-        numbersVariables = new NumbersVariableContainer();
-        boolsVariables = new BoolsVariableContainer();
-        stringsVariables = new StringsVariableContainer();
     }
 
     public boolean CheckInstructionStack(){
@@ -97,6 +92,10 @@ public class CalculationListener extends EZPython4BaseListener {
 
         var name = ctx.VARIABLE_T().getText();
         var type = ctx.type() == null ? ctx.BOOL_TYPE_T() : ctx.type();
+        var value = ctx.value();
+        if(value != null){
+            arithmValues.push(Double.parseDouble(value.getText()));
+        }
 
         switch (type.getText()) {
             case "bool":
@@ -135,6 +134,13 @@ public class CalculationListener extends EZPython4BaseListener {
             System.out.println(x + "---" + ctx.getChild(x).getText());
         }
 
+//        if (childCount == 1 && !(isArithm(ctx.getChild(0)))) {
+//            if (hasParentThatCouldBeEvaluated(ctx.getParent())) {
+//                return; // Bo parent sobie stacka da
+//            }
+//            arithmValues.push(Double.parseDouble(ctx.getChild(0).getText()));
+//        }
+
         if (childCount >= 3) // to rozpatrujemy tylko
         {
             var arithmExpression = new ArithmExpression(ctx.getChild(0), ctx.getChild(2), ctx.getChild(1));
@@ -144,23 +150,39 @@ public class CalculationListener extends EZPython4BaseListener {
         }
     }
 
-    // private boolean hasParentThatCouldBeEvaluated(ParserRuleContext ctx) {
-    //     return ctx.getRuleContext() instanceof EZPython4Parser.ArithmExprContext || ctx.getRuleContext() instanceof EZPython4Parser.TermContext;
-    // }
+     private boolean hasParentThatCouldBeEvaluated(ParserRuleContext ctx) {
+         return ctx.getRuleContext() instanceof EZPython4Parser.ArithmExprContext || ctx.getRuleContext() instanceof EZPython4Parser.TermContext;
+     }
 
      private boolean hasParentThatCouldBeEvaluated2(ParserRuleContext ctx) {
          return ctx.getRuleContext() instanceof EZPython4Parser.LogicExprContext;
      }
 
-    // private boolean isTerm(ParseTree child) {
-    //     return (child.getText().contains("*") || child.getText().contains("/"));
-    // }
+     private boolean isTerm(ParseTree child) {
+         return (child.getText().contains("*") || child.getText().contains("/"));
+     }
+
+    private boolean isArithm(ParseTree child) {
+        return (child.getText().contains("+") || child.getText().contains("-"));
+    }
+
+    private boolean isLogic(ParseTree child) {
+        return (child.getText().contains("or") || child.getText().contains("and"));
+    }
 
     @Override public void exitTerm(EZPython4Parser.TermContext ctx) {
         var childCount = ctx.getChildCount();
         for(int x= 0; x< ctx.getChildCount();x++){
             System.out.println(x + "+++" + ctx.getChild(x).getText());
         }
+
+//        if (childCount == 1 && !(isTerm(ctx.getChild(0)))) {
+//            if (hasParentThatCouldBeEvaluated(ctx.getParent())) {
+//                return; // Bo parent sobie stacka da
+//            }
+//            arithmValues.push(Double.parseDouble(ctx.getChild(0).getText()));
+//        }
+
 
         if (childCount >= 3) // to rozpatrujemy tylko
         {
@@ -171,14 +193,15 @@ public class CalculationListener extends EZPython4BaseListener {
         }
     }
 
+
+
     @Override public void exitLogicExpr(EZPython4Parser.LogicExprContext ctx) {
         var childCount = ctx.getChildCount();
-
         for(int x= 0; x< ctx.getChildCount();x++){
             System.out.println(x + "bool" + ctx.getChild(x).getText());
         }
 
-        if (childCount == 1) {
+        if (childCount == 1 && !(isLogic(ctx.getChild(0)))) {
             if (hasParentThatCouldBeEvaluated2(ctx.getParent())) {
                 return; // Bo parent sobie stacka da
             }
@@ -190,6 +213,46 @@ public class CalculationListener extends EZPython4BaseListener {
             var logicExpression = new LogicExpression(ctx.getChild(0), ctx.getChild(2), ctx.getChild(1));
 
             logicValues.push(logicExpression.evaluate());
+        }
+
+    }
+    @Override public void exitLogicalOR(EZPython4Parser.LogicalORContext ctx) {
+        var childCount = ctx.getChildCount();
+        if (childCount >= 3) // to rozpatrujemy tylko
+        {
+            var logicExpression = new LogicExpression(ctx.getChild(0), ctx.getChild(2), ctx.getChild(1));
+
+            logicValues.push(logicExpression.evaluate());
+        }
+    }
+    @Override public void exitLogicalAND(EZPython4Parser.LogicalANDContext ctx) {
+        var childCount = ctx.getChildCount();
+        if (childCount >= 3) // to rozpatrujemy tylko
+        {
+            var logicExpression = new LogicExpression(ctx.getChild(0), ctx.getChild(2), ctx.getChild(1));
+
+            logicValues.push(logicExpression.evaluate());
+        }
+    }
+
+    @Override public void exitLogicalTerm(EZPython4Parser.LogicalTermContext ctx) {
+        var childCount = ctx.getChildCount();
+        for(int x= 0; x< ctx.getChildCount();x++){
+            System.out.println(x + "bool" + ctx.getChild(x).getText());
+        }
+
+        if (childCount == 1 && !(ctx.getChild(0).getText().contains("and") || ctx.getChild(0).getText().contains("or"))) {
+            if (hasParentThatCouldBeEvaluated2(ctx.getParent())) {
+                return; // Bo parent sobie stacka da
+            }
+            logicValues.push(Boolean.parseBoolean(ctx.getChild(0).getText()));
+        }
+
+        if (childCount >= 3) // to rozpatrujemy tylko
+        {
+            var logicTermExpression = new LogicTermExpression(ctx.getChild(0), ctx.getChild(2), ctx.getChild(1));
+
+            logicValues.push(logicTermExpression.evaluate());
         }
 
     }

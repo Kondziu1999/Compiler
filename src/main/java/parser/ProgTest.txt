@@ -1,3 +1,5 @@
-int result = (((2)+3)*3+(2+4))/7;
+int result0 = 2;
+int result = (((result0)+3)*3+(result0+4))/7;
 
-
+bool result2 = false;
+bool result3 = true and result2;

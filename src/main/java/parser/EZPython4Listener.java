@@ -1,4 +1,4 @@
-// Generated from EZPython4.g4 by ANTLR 4.7.2
+// Generated from src\main\java\parser\EZPython4.g4 by ANTLR 4.7.2
  package parser;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -127,26 +127,6 @@ public interface EZPython4Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitLogicalTerm(EZPython4Parser.LogicalTermContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link EZPython4Parser#logicalNOT}.
-	 * @param ctx the parse tree
-	 */
-	void enterLogicalNOT(EZPython4Parser.LogicalNOTContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link EZPython4Parser#logicalNOT}.
-	 * @param ctx the parse tree
-	 */
-	void exitLogicalNOT(EZPython4Parser.LogicalNOTContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link EZPython4Parser#logicalResult}.
-	 * @param ctx the parse tree
-	 */
-	void enterLogicalResult(EZPython4Parser.LogicalResultContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link EZPython4Parser#logicalResult}.
-	 * @param ctx the parse tree
-	 */
-	void exitLogicalResult(EZPython4Parser.LogicalResultContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link EZPython4Parser#number}.
 	 * @param ctx the parse tree

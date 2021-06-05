@@ -1,2 +1,2 @@
-antlr4 srcmainjavaparserEZPython4.g4
-javac srcmainjavaantlrEZPython4.java
+antlr4 src\main\java\parser\EZPython4.g4
+javac src\main\java\antlr\EZPython4*.java

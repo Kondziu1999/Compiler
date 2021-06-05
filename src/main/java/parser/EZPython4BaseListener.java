@@ -1,4 +1,4 @@
-// Generated from EZPython4.g4 by ANTLR 4.7.2
+// Generated from src\main\java\parser\EZPython4.g4 by ANTLR 4.7.2
  package parser;
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -155,30 +155,6 @@ public class EZPython4BaseListener implements EZPython4Listener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitLogicalTerm(EZPython4Parser.LogicalTermContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterLogicalNOT(EZPython4Parser.LogicalNOTContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitLogicalNOT(EZPython4Parser.LogicalNOTContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterLogicalResult(EZPython4Parser.LogicalResultContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitLogicalResult(EZPython4Parser.LogicalResultContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

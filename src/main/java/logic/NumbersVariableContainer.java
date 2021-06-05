@@ -2,7 +2,7 @@ package logic;
 
 import java.util.HashMap;
 
-public static class NumbersVariableContainer {
+public class NumbersVariableContainer {
     private static HashMap<String, Double> variables = new HashMap<>();
 
     public static boolean containsVariable(String name){

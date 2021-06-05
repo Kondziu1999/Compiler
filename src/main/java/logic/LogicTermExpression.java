@@ -17,7 +17,7 @@ public class LogicTermExpression {
     public Double secondValue;
     public LogicTermOperations operation;
 
-    public Boolean isPredefined;
+    public Boolean isPredefined = false;
     public Boolean predefinedValueForEvaluation;
 
     public LogicTermExpression(ParseTree firstValueContext, ParseTree secondValueContext, ParseTree operationContext) {
@@ -68,8 +68,7 @@ public class LogicTermExpression {
         } catch (Exception e) {
             // This means that text is a variable
             return NumbersVariableContainer.getValue(text);
-            
-            return Double.parseDouble("XDDDDZZ");
+
         }
     }
 
@@ -79,31 +78,27 @@ public class LogicTermExpression {
         }
  
         switch (operation) {
-            case LogicTermOperations.GREATER: {
+            case GREATER: {
                 return firstValue > secondValue;
             }
-            break;
-            case LogicTermOperations.GREATEREQ: {
+            case GREATEREQ: {
                 return firstValue >= secondValue;
             }
-            break;
-            case LogicTermOperations.LESS: {
+            case LESS: {
                 return firstValue < secondValue;
             }
-            break;
-            case LogicTermOperations.LESSEQ: {
+            case LESSEQ: {
                 return firstValue <= secondValue;
             }
-            break;
-            case LogicTermOperations.EQUAL: {
-                return firstValue == secondValue;
+            case EQUAL: {
+                return firstValue.equals(secondValue);
             }
-            break;
-            case LogicTermOperations.NOTEQUAL: {
-                return firstValue != secondValue;
+            case NOTEQUAL: {
+                return !firstValue.equals(secondValue);
             }
-            break;
         }
+
+        return true;
     }
 
     private boolean isLogic(ParseTree child) {
