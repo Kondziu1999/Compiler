@@ -1,0 +1,23 @@
+﻿<Properties StartupConfiguration="{4E4990F6-608A-4FD7-A1F0-0B85D237FE94}|Default">
+  <MonoDevelop.Ide.ItemProperties.CsCompiler FirstBuild="True" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="CsCompiler/Program.cs">
+    <Files>
+      <File FileName="CsCompiler/Program.cs" Line="19" Column="48" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="CsCompiler" expanded="True">
+            <Node name="CsCompiler" expanded="True" selected="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

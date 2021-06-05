@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "H2t+Ec2nn2f5cT8b81ZRbj9KykIsRtGjLjpfPT+Hfwv61mL76r0wzhg9+n+MiKLA3lZkHYWVCTEjl1VtSsrFWg==",
+  "success": true,
+  "projectFilePath": "/Users/minorsonek/Downloads/Studia 6 semestr/Compiler/CsCompiler/CsCompiler/CsCompiler.csproj",
+  "expectedPackageFiles": [
+    "/Users/minorsonek/.nuget/packages/antlr4.runtime.standard/4.9.2/antlr4.runtime.standard.4.9.2.nupkg.sha512"
+  ],
+  "logs": []
+}
