@@ -2,14 +2,14 @@ package logic;
 
 import java.util.HashMap;
 
-public class NumbersVariableContainer {
-    private HashMap<String, Double> variables = new HashMap<>();
+public static class NumbersVariableContainer {
+    private static HashMap<String, Double> variables = new HashMap<>();
 
-    public boolean containsVariable(String name){
+    public static boolean containsVariable(String name){
         return variables.containsKey(name);
     }
 
-    public void setVariable(NumberVariable numberVariable){
+    public static void setVariable(NumberVariable numberVariable){
         if (variables.containsKey(numberVariable.name)){
             variables.replace(numberVariable.name,numberVariable.value);
             return;
@@ -18,7 +18,7 @@ public class NumbersVariableContainer {
         variables.put(numberVariable.name, numberVariable.value);
     }
 
-    public Double getValue(String varName){
+    public static Double getValue(String varName){
         if (variables.containsKey(varName)) {
             return variables.get(varName);
         }

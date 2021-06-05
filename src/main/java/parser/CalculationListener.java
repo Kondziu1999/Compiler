@@ -22,11 +22,9 @@ public class CalculationListener extends EZPython4BaseListener {
     private FirstPhaseStack stack;
     
     // OUR STUFF:
-    private NumbersVariableContainer numbersVariables;
-    private BoolsVariableContainer boolsVariables;
-    private StringsVariableContainer stringsVariables;
-
     private Stack<Double> arithmValues = new Stack<Double>();
+    private Stack<Boolean> logicValues = new Stack<Boolean>();
+    private Stack<String> stringValues = new Stack<String>();
 
 
 
@@ -102,9 +100,9 @@ public class CalculationListener extends EZPython4BaseListener {
         switch (type.getText()) {
             case "bool":
             {
-                var boolVariable = new BoolVariable(name, logicExprStack.pop());
+                var boolVariable = new BoolVariable(name, logicValues.pop());
 
-                boolsVariables.setVariable(boolVariable);
+                BoolsVariableContainer.setVariable(boolVariable);
                 System.out.println(boolVariable.value.toString());
             }
             break;
@@ -112,15 +110,15 @@ public class CalculationListener extends EZPython4BaseListener {
             {
                 var numberVariable = new NumberVariable(name, arithmValues.pop());
 
-                numbersVariables.setVariable(numberVariable);
+                NumbersVariableContainer.setVariable(numberVariable);
                 System.out.println(numberVariable.value.toString());
             }
             break;
             case "string":
             {
-                var stringVariable = new StringVariable(name, /* TODO: Stringvalue */null);
+                var stringVariable = new StringVariable(name, stringValues.pop());
 
-                stringsVariables.setVariable(stringVariable);
+                StringsVariableContainer.setVariable(stringVariable);
                 System.out.println(stringVariable.value.toString());
             }
             break;
@@ -181,7 +179,14 @@ public class CalculationListener extends EZPython4BaseListener {
             if (hasParentThatCouldBeEvaluated2(ctx.getParent())) {
                 return; // Bo parent sobie stacka da
             }
-            logicExprStack.push(Boolean.parseBoolean(ctx.getChild(0).getText()));
+            logicValues.push(Boolean.parseBoolean(ctx.getChild(0).getText()));
+        }
+
+        if (childCount >= 3) // to rozpatrujemy tylko
+        {
+            var logicExpression = new LogicExpression(ctx.getChild(0), ctx.getChild(2), ctx.getChild(1));
+
+            logicValues.push(logicExpression.evaluate());
         }
 
     }

@@ -23,10 +23,19 @@ public class ArithmExpression {
             this.firstValue = 0.0;
             return;
         }
-        this.firstValue = singleValueContext.getChildCount() >= 3 ? isTerm(singleValueContext) ? new TermExpression(singleValueContext.getChild(0), singleValueContext.getChild(2), singleValueContext.getChild(1)).evaluate() : new ArithmExpression(singleValueContext.getChild(0), singleValueContext.getChild(2), singleValueContext.getChild(1)).evaluate() : Double.parseDouble(singleValueContext.getText());
+        this.firstValue = singleValueContext.getChildCount() >= 3 ? isTerm(singleValueContext) ? new TermExpression(singleValueContext.getChild(0), singleValueContext.getChild(2), singleValueContext.getChild(1)).evaluate() : new ArithmExpression(singleValueContext.getChild(0), singleValueContext.getChild(2), singleValueContext.getChild(1)).evaluate() : getValueForText(singleValueContext.getText());
     }
 
-
+    private Double getValueForText(String text) {
+        try {
+            return Double.parseDouble(text);
+        } catch (Exception e) {
+            // This means that text is a variable
+            return NumbersVariableContainer.getValue(text);
+            
+            return Double.parseDouble("XDD");
+        }
+    }
 
     public Double evaluate() {
         if (secondValue == null) {
