@@ -91,7 +91,7 @@ public class CalculationListener extends EZPython4BaseListener {
     @Override public void exitVariableStmt(EZPython4Parser.VariableStmtContext ctx) {
 
         var name = ctx.VARIABLE_T().getText();
-        var type = ctx.type() == null ? ctx.BOOL_TYPE_T() : ctx.type();
+        var type = ctx.type() == null ? ctx.BOOL_TYPE_T() == null ? ctx.STRING_TYPE_T() : ctx.BOOL_TYPE_T() : ctx.type();
         var value = ctx.value();
         if(value != null){
             arithmValues.push(Double.parseDouble(value.getText()));
@@ -116,7 +116,8 @@ public class CalculationListener extends EZPython4BaseListener {
             break;
             case "string":
             {
-                var stringVariable = new StringVariable(name, stringValues.pop());
+
+                var stringVariable = new StringVariable(name, ctx.STRING_T().getText() );
 
                 StringsVariableContainer.setVariable(stringVariable);
                 System.out.println(stringVariable.value.toString());
@@ -129,10 +130,10 @@ public class CalculationListener extends EZPython4BaseListener {
 
     @Override public void exitArithmExpr(EZPython4Parser.ArithmExprContext ctx) {
         var childCount = ctx.getChildCount();
-        for(int x= 0; x< ctx.getChildCount();x++){
-
-            System.out.println(x + "---" + ctx.getChild(x).getText());
-        }
+//        for(int x= 0; x< ctx.getChildCount();x++){
+//
+//            System.out.println(x + "---" + ctx.getChild(x).getText());
+//        }
 
 //        if (childCount == 1 && !(isArithm(ctx.getChild(0)))) {
 //            if (hasParentThatCouldBeEvaluated(ctx.getParent())) {
@@ -145,7 +146,7 @@ public class CalculationListener extends EZPython4BaseListener {
         {
             var arithmExpression = new ArithmExpression(ctx.getChild(0), ctx.getChild(2), ctx.getChild(1));
 
-            System.out.println("stackarith" + arithmExpression.evaluate().toString());
+//            System.out.println("stackarith" + arithmExpression.evaluate().toString());
             arithmValues.push(arithmExpression.evaluate());
         }
     }
@@ -172,9 +173,9 @@ public class CalculationListener extends EZPython4BaseListener {
 
     @Override public void exitTerm(EZPython4Parser.TermContext ctx) {
         var childCount = ctx.getChildCount();
-        for(int x= 0; x< ctx.getChildCount();x++){
-            System.out.println(x + "+++" + ctx.getChild(x).getText());
-        }
+//        for(int x= 0; x< ctx.getChildCount();x++){
+//            System.out.println(x + "+++" + ctx.getChild(x).getText());
+//        }
 
 //        if (childCount == 1 && !(isTerm(ctx.getChild(0)))) {
 //            if (hasParentThatCouldBeEvaluated(ctx.getParent())) {
@@ -187,8 +188,7 @@ public class CalculationListener extends EZPython4BaseListener {
         if (childCount >= 3) // to rozpatrujemy tylko
         {
             var termExpression = new TermExpression(ctx.getChild(0), ctx.getChild(2), ctx.getChild(1));
-
-            System.out.println("stackterm" + termExpression.evaluate().toString());
+//            System.out.println("stackterm" + termExpression.evaluate().toString());
             arithmValues.push(termExpression.evaluate());
         }
     }
@@ -196,26 +196,9 @@ public class CalculationListener extends EZPython4BaseListener {
 
 
     @Override public void exitLogicExpr(EZPython4Parser.LogicExprContext ctx) {
-        var childCount = ctx.getChildCount();
-        for(int x= 0; x< ctx.getChildCount();x++){
-            System.out.println(x + "bool" + ctx.getChild(x).getText());
-        }
-
-        if (childCount == 1 && !(isLogic(ctx.getChild(0)))) {
-            if (hasParentThatCouldBeEvaluated2(ctx.getParent())) {
-                return; // Bo parent sobie stacka da
-            }
-            logicValues.push(Boolean.parseBoolean(ctx.getChild(0).getText()));
-        }
-
-        if (childCount >= 3) // to rozpatrujemy tylko
-        {
-            var logicExpression = new LogicExpression(ctx.getChild(0), ctx.getChild(2), ctx.getChild(1));
-
-            logicValues.push(logicExpression.evaluate());
-        }
-
     }
+
+
     @Override public void exitLogicalOR(EZPython4Parser.LogicalORContext ctx) {
         var childCount = ctx.getChildCount();
         if (childCount >= 3) // to rozpatrujemy tylko
@@ -237,9 +220,9 @@ public class CalculationListener extends EZPython4BaseListener {
 
     @Override public void exitLogicalTerm(EZPython4Parser.LogicalTermContext ctx) {
         var childCount = ctx.getChildCount();
-        for(int x= 0; x< ctx.getChildCount();x++){
-            System.out.println(x + "bool" + ctx.getChild(x).getText());
-        }
+//        for(int x= 0; x< ctx.getChildCount();x++){
+//            System.out.println(x + "bool" + ctx.getChild(x).getText());
+//        }
 
         if (childCount == 1 && !(ctx.getChild(0).getText().contains("and") || ctx.getChild(0).getText().contains("or"))) {
             if (hasParentThatCouldBeEvaluated2(ctx.getParent())) {

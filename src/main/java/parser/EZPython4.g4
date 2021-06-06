@@ -26,12 +26,16 @@ END_LINE_T:	    ';' ;
 NL_T:           '\n' ;
 INT_TYPE_T:    'int' ;
 BOOL_TYPE_T:    'bool';
+STRING_TYPE_T:    'string';
+QUOTE_T:        '"' ;
 
 WHILE_T:       	'while';
 LBRACE_T:       '{' ;
 RBRACE_T:       '}' ;
 
+
 INT_T:		[1-9][0-9]* | '0';
+STRING_T:       QUOTE_T[a-zA-Z_0-9]*QUOTE_T ;
 VARIABLE_T:	[a-zA-Z_][a-zA-Z0-9_]*;
 WHITESPACE_T:  	[ \t\r\n]+ -> skip;
 
@@ -60,7 +64,8 @@ term:
 
 variableStmt:
 	BOOL_TYPE_T VARIABLE_T ASSIGN_T logicExpr END_LINE_T
-	| type VARIABLE_T ASSIGN_T (value | arithmExpr) END_LINE_T;
+	| type VARIABLE_T ASSIGN_T (value | arithmExpr) END_LINE_T
+	| STRING_TYPE_T VARIABLE_T ASSIGN_T  STRING_T  END_LINE_T;
 
 
 value:

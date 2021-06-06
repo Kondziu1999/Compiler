@@ -53,6 +53,7 @@ public class LogicTermExpression {
             break;
             case "==": {
                 this.operation = LogicTermOperations.EQUAL;
+
             }
             break;
             case "≠": {
@@ -91,7 +92,9 @@ public class LogicTermExpression {
                 return firstValue <= secondValue;
             }
             case EQUAL: {
+                System.out.println("evaluate eq = " + firstValue.equals(secondValue));
                 return firstValue.equals(secondValue);
+
             }
             case NOTEQUAL: {
                 return !firstValue.equals(secondValue);
