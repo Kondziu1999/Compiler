@@ -28,7 +28,8 @@ INT_TYPE_T:    'int' ;
 BOOL_TYPE_T:    'bool';
 STRING_TYPE_T:    'string';
 QUOTE_T:        '"' ;
-
+FUNCTION_T:    	'function';
+IF_T :          'if';
 WHILE_T:       	'while';
 LBRACE_T:       '{' ;
 RBRACE_T:       '}' ;
@@ -48,7 +49,10 @@ program:
 stmt:
 	(expr
 	| variableStmt
-	| whileStmt);
+	| whileStmt
+	| ifStmt
+	| funcStmt
+	| funcCall) ;
 
 
 expr:
@@ -110,10 +114,21 @@ numberType:
      INT_TYPE_T;
 
 
+
+ifStmt:
+    IF_T LBRACKET_T logicExpr RBRACKET_T LBRACE_T codeSection RBRACE_T;
+
+
 codeSection:
-	(stmt)*;
+	(stmt |NL_T)*;
 
 
 
 whileStmt:
-    WHILE_T LBRACKET_T logicExpr RBRACKET_T LBRACE_T codeSection RBRACE_T;
+    WHILE_T LBRACKET_T logicExpr RBRACKET_T (NL_T)* LBRACE_T codeSection RBRACE_T;
+
+funcStmt:
+    FUNCTION_T VARIABLE_T LBRACKET_T  RBRACKET_T (NL_T)* LBRACE_T codeSection RBRACE_T;
+
+funcCall:
+    VARIABLE_T LBRACKET_T RBRACKET_T END_LINE_T;

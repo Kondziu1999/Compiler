@@ -88,6 +88,42 @@ public class CalculationListener extends EZPython4BaseListener {
 
     }
 
+
+    @Override public void enterIfStmt(EZPython4Parser.IfStmtContext ctx) {
+        var ifExpr = new WhileOrIf(ctx.logicExpr(),true,ctx.codeSection());
+        ifExpr.perform();
+
+        for(int i =0 ; i<ctx.getChildCount(); i++){
+            ctx.removeLastChild();
+        }
+
+    }
+
+    @Override public void enterWhileStmt(EZPython4Parser.WhileStmtContext ctx) {
+        var whileExpr = new WhileOrIf(ctx.logicExpr(),false,ctx.codeSection());
+        whileExpr.perform();
+
+        for(int i =0 ; i<ctx.getChildCount(); i++){
+            ctx.removeLastChild();
+        }
+    }
+
+
+
+    @Override public void enterFuncStmt(EZPython4Parser.FuncStmtContext ctx) {
+        var funcExpr = new Function(ctx.VARIABLE_T().getText(),ctx.codeSection());
+        FunctionsContainer.addFunction(funcExpr);
+
+        for(int i =0 ; i<ctx.getChildCount(); i++){
+            ctx.removeLastChild();
+        }
+    }
+    @Override public void exitFuncCall(EZPython4Parser.FuncCallContext ctx){
+
+        var functionCall = FunctionsContainer.getFunctionByName(ctx.VARIABLE_T().getText());
+        functionCall.perform();
+    }
+
     @Override public void exitVariableStmt(EZPython4Parser.VariableStmtContext ctx) {
 
         var name = ctx.VARIABLE_T().getText();
@@ -146,7 +182,7 @@ public class CalculationListener extends EZPython4BaseListener {
         {
             var arithmExpression = new ArithmExpression(ctx.getChild(0), ctx.getChild(2), ctx.getChild(1));
 
-//            System.out.println("stackarith" + arithmExpression.evaluate().toString());
+
             arithmValues.push(arithmExpression.evaluate());
         }
     }
@@ -240,9 +276,7 @@ public class CalculationListener extends EZPython4BaseListener {
 
     }
 
-    @Override public void exitWhileStmt(EZPython4Parser.WhileStmtContext ctx) {
-        
-    }
+
 
 //    @Override
 //    public void exitFunction_call(CalculatorParser.Function_callContext ctx) {
@@ -349,12 +383,7 @@ public class CalculationListener extends EZPython4BaseListener {
 //        whileInstructionsCounter.push(0);
 //    }
 
-    @Override public void exitWhileStmt(EZPython4Parser.WhileStmtContext ctx) {
 
-        var logicExpr = ctx.logicExpr();
-
-        this.exitLogicExpr((EZPython4Parser.LogicExprContext)logicExpr.getRuleContext());
-    }
 
 //        @Override public void exitWhileLoop(CalculatorParser.WhileLoopContext ctx) {
 //        //lastWhere = Where.empty();-

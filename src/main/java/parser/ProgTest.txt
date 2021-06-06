@@ -1,1 +1,9 @@
-string raz = "";
+function a() {
+int a = 2;
+while (a< 10) {
+
+int a = a + 1;
+}
+}
+
+a();

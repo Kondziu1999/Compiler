@@ -158,6 +158,16 @@ public interface EZPython4Listener extends ParseTreeListener {
 	 */
 	void exitNumberType(EZPython4Parser.NumberTypeContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link EZPython4Parser#ifStmt}.
+	 * @param ctx the parse tree
+	 */
+	void enterIfStmt(EZPython4Parser.IfStmtContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link EZPython4Parser#ifStmt}.
+	 * @param ctx the parse tree
+	 */
+	void exitIfStmt(EZPython4Parser.IfStmtContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link EZPython4Parser#codeSection}.
 	 * @param ctx the parse tree
 	 */
@@ -177,4 +187,24 @@ public interface EZPython4Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitWhileStmt(EZPython4Parser.WhileStmtContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link EZPython4Parser#funcStmt}.
+	 * @param ctx the parse tree
+	 */
+	void enterFuncStmt(EZPython4Parser.FuncStmtContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link EZPython4Parser#funcStmt}.
+	 * @param ctx the parse tree
+	 */
+	void exitFuncStmt(EZPython4Parser.FuncStmtContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link EZPython4Parser#funcCall}.
+	 * @param ctx the parse tree
+	 */
+	void enterFuncCall(EZPython4Parser.FuncCallContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link EZPython4Parser#funcCall}.
+	 * @param ctx the parse tree
+	 */
+	void exitFuncCall(EZPython4Parser.FuncCallContext ctx);
 }

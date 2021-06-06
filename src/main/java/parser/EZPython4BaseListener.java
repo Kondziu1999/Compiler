@@ -196,6 +196,18 @@ public class EZPython4BaseListener implements EZPython4Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterIfStmt(EZPython4Parser.IfStmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitIfStmt(EZPython4Parser.IfStmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterCodeSection(EZPython4Parser.CodeSectionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -215,6 +227,30 @@ public class EZPython4BaseListener implements EZPython4Listener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitWhileStmt(EZPython4Parser.WhileStmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterFuncStmt(EZPython4Parser.FuncStmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFuncStmt(EZPython4Parser.FuncStmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterFuncCall(EZPython4Parser.FuncCallContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFuncCall(EZPython4Parser.FuncCallContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

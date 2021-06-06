@@ -24,7 +24,7 @@ public class LogicExpression {
             this.firstValue = true;
             return;
         }
-        this.firstValue = singleValueContext.getChildCount() >= 3 ? isTerm(singleValueContext) ? new LogicTermExpression(singleValueContext.getChild(0), singleValueContext.getChild(2), singleValueContext.getChild(1)).evaluate() : new LogicExpression(singleValueContext.getChild(0), singleValueContext.getChild(2), singleValueContext.getChild(1)).evaluate() : getValueForText(singleValueContext.getText());
+        this.firstValue = singleValueContext.getChildCount() >= 3 ? isTerm(singleValueContext) ? new LogicTermExpression(singleValueContext.getChild(0), singleValueContext.getChild(2), singleValueContext.getChild(1)).evaluate() : new LogicExpression(singleValueContext.getChild(0), singleValueContext.getChild(2), singleValueContext.getChild(1)).evaluate() : isTerm(singleValueContext) ? new LogicTermExpression(singleValueContext.getChild(0).getChild(0), singleValueContext.getChild(0).getChild(2), singleValueContext.getChild(0).getChild(1)).evaluate() : getValueForText(singleValueContext.getText());
     }
 
     private Boolean getValueForText(String text) {

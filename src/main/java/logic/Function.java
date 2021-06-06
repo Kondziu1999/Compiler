@@ -1,11 +1,15 @@
 package logic;
 
+import org.antlr.v4.runtime.tree.ParseTree;
+
+import java.util.LinkedList;
+
 public class Function {
     public String name;
-    public List<Statement> statements;
+    public LinkedList<Statement> statements;
 
     public Function(String name, ParseTree codeSection) {
-        this.statements = new List<Statement>();
+        this.statements = new LinkedList<Statement>();
         this.name = name;
 
         for (var i = 0; i < codeSection.getChildCount(); i++) {
@@ -17,8 +21,8 @@ public class Function {
     }
 
     public void perform() {
-        for (var i = 0; i < statements.length; i++) {
-            statements[i].evaluate();
+        for (var i = statements.size() - 1; i >= 0; i--) {
+            statements.get(i).evaluate();
         }
     }
 }
