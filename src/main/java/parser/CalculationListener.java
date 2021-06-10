@@ -132,36 +132,63 @@ public class CalculationListener extends EZPython4BaseListener {
         if(value != null){
             arithmValues.push(Double.parseDouble(value.getText()));
         }
+        if(BoolsVariableContainer.getValue(name) != null || NumbersVariableContainer.getValue(name) != null || StringsVariableContainer.getValue(name) != null){
+            throw new RuntimeException("Variable "+ name + " is already assigned");
+        }
+
+
 
         switch (type.getText()) {
             case "bool":
             {
                 var boolVariable = new BoolVariable(name, logicValues.pop());
-
                 BoolsVariableContainer.setVariable(boolVariable);
-                System.out.println(boolVariable.value.toString());
             }
             break;
             case "int":
             {
-                var numberVariable = new NumberVariable(name, arithmValues.pop());
-
+                var numberVariable = new NumberVariable(name, ((double) Math.round(arithmValues.pop())));
                 NumbersVariableContainer.setVariable(numberVariable);
-                System.out.println(numberVariable.value.toString());
+            }
+            break;
+            case "double":
+            {
+                var numberVariable = new NumberVariable(name, arithmValues.pop());
+                NumbersVariableContainer.setVariable(numberVariable);
             }
             break;
             case "string":
             {
-
                 var stringVariable = new StringVariable(name, ctx.STRING_T().getText() );
-
                 StringsVariableContainer.setVariable(stringVariable);
-                System.out.println(stringVariable.value.toString());
             }
             break;
         }
 
     }
+
+    @Override public void exitVariableReAssignStmt(EZPython4Parser.VariableReAssignStmtContext ctx) {
+        var name = ctx.VARIABLE_T().getText();
+        var value = ctx.value();
+        if(value != null){
+            arithmValues.push(Double.parseDouble(value.getText()));
+        }
+
+        if(NumbersVariableContainer.getValue(name) != null){
+            var numberVariable = new NumberVariable(name, arithmValues.pop());
+            NumbersVariableContainer.setVariable(numberVariable);
+        }
+        else if(BoolsVariableContainer.getValue(name) != null){
+            var boolVariable = new BoolVariable(name, logicValues.pop());
+            BoolsVariableContainer.setVariable(boolVariable);
+        }
+        else if(StringsVariableContainer.getValue(name) != null){
+            var stringVariable = new StringVariable(name, ctx.STRING_T().getText() );
+            StringsVariableContainer.setVariable(stringVariable);
+        }
+
+    }
+
 
 
     @Override public void exitArithmExpr(EZPython4Parser.ArithmExprContext ctx) {
@@ -275,6 +302,20 @@ public class CalculationListener extends EZPython4BaseListener {
         }
 
     }
+
+    @Override public void exitLogicalVal(EZPython4Parser.LogicalValContext ctx) {
+        logicValues.push(Boolean.parseBoolean(ctx.getChild(0).getText()));
+    }
+
+
+
+    @Override public void exitPrintFunc(EZPython4Parser.PrintFuncContext ctx) {
+        var printText = new Print(ctx);
+        printText.evaluate();
+    }
+
+
+
 
 
 

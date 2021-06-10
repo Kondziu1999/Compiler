@@ -1,9 +1,16 @@
-function a() {
-int a = 2;
-while (a< 10) {
+int x = 0;
+double isRunning = 1;
 
-int a = a + 1;
-}
+function a(){
+    if(x<3){
+        x = x+1;
+        print("if_x3",x);
+        a();
+    }
+    if(3==x and isRunning>0){
+        print("dupa");
+        isRunning = 0;
+    }
 }
 
 a();

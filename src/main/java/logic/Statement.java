@@ -1,13 +1,16 @@
 package logic;
 
 import org.antlr.v4.runtime.tree.ParseTree;
+import parser.EZPython4Lexer;
+import parser.EZPython4Parser;
 
 enum StatementType {
     VARIABLEASSIGNMENT,
     WHILE,
     IF,
     FUNCTIONDECLARATION,
-    FUNCTIONCALL
+    FUNCTIONCALL,
+    PRINT
 }
 
 public class Statement {
@@ -34,6 +37,9 @@ public class Statement {
         else if (statementAsText.contains("()")) {
             this.type = StatementType.FUNCTIONCALL;
         }
+        else if (statementAsText.contains("print")){
+            this.type = StatementType.PRINT;
+        }
     }
 
     public void evaluate() {
@@ -52,7 +58,9 @@ public class Statement {
                 var name = this.statementContext.getChild(1).getText();
                 var type = this.statementContext.getChild(0);
                 var value = this.statementContext.getChild(3);
-
+                if(BoolsVariableContainer.getValue(name) != null || NumbersVariableContainer.getValue(name) != null || StringsVariableContainer.getValue(name) != null){
+                    throw new RuntimeException("Variable "+ name + " is already assigned");
+                }
                 switch (type.getText()) {
                     case "bool":
                     {
@@ -60,17 +68,14 @@ public class Statement {
                         var boolVariable = new BoolVariable(name, logicExpr.evaluate());
 
                         BoolsVariableContainer.setVariable(boolVariable);
-                        System.out.println(boolVariable.value.toString());
                     }
                     break;
                     case "int":
                     {
                         var arithmExpr = new ArithmExpression(value);
                         var numberVariable = new NumberVariable(name, arithmExpr.evaluate());
-                        System.out.println("XD;" + arithmExpr.evaluate());
 
                         NumbersVariableContainer.setVariable(numberVariable);
-                        System.out.println(numberVariable.value.toString());
                     }
                     break;
                     case "string":
@@ -78,9 +83,31 @@ public class Statement {
                         var stringVariable = new StringVariable(name, value.getText() );
 
                         StringsVariableContainer.setVariable(stringVariable);
-                        System.out.println(stringVariable.value.toString());
                     }
                     break;
+                    default:
+                    {
+
+                        var valueReAssing = this.statementContext.getChild(2);
+                        name = this.statementContext.getChild(0).getText();
+
+                        if(BoolsVariableContainer.getValue(name) != null){
+                            var logicExpr = new LogicExpression(valueReAssing);
+                            var boolVariable = new BoolVariable(name, logicExpr.evaluate());
+                            BoolsVariableContainer.setVariable(boolVariable);
+                        }
+                        else if(NumbersVariableContainer.getValue(name) != null){
+                            var arithmExpr = new ArithmExpression(valueReAssing);
+                            var numberVariable = new NumberVariable(name, arithmExpr.evaluate());
+                            NumbersVariableContainer.setVariable(numberVariable);
+                        }
+                        else if(StringsVariableContainer.getValue(name) != null){
+                            var stringVariable = new StringVariable(name, valueReAssing.getText());
+                            StringsVariableContainer.setVariable(stringVariable);
+                        }
+
+                    }
+
                 }
             }
             break;
@@ -94,6 +121,10 @@ public class Statement {
                 functionCall.perform();
             }
             break;
+            case PRINT:{
+                var printText = new Print((EZPython4Parser.PrintFuncContext)statementContext);
+                printText.evaluate();
+            }
         }
     }
 }

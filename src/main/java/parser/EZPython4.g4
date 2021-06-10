@@ -24,6 +24,7 @@ NOT_T:         	'not' ;
 AND_T:        	'and';
 END_LINE_T:	    ';' ;
 NL_T:           '\n' ;
+DOUBLE_TYPE_T:   'double';
 INT_TYPE_T:    'int' ;
 BOOL_TYPE_T:    'bool';
 STRING_TYPE_T:    'string';
@@ -33,7 +34,11 @@ IF_T :          'if';
 WHILE_T:       	'while';
 LBRACE_T:       '{' ;
 RBRACE_T:       '}' ;
+PRINT_T:        'print';
+COMMA_T:        ',';
+DOT_T:          '.';
 
+DOUBLE_T:	[0-9]+DOT_T[0-9]*;
 
 INT_T:		[1-9][0-9]* | '0';
 STRING_T:       QUOTE_T[a-zA-Z_0-9]*QUOTE_T ;
@@ -52,7 +57,9 @@ stmt:
 	| whileStmt
 	| ifStmt
 	| funcStmt
-	| funcCall) ;
+	| funcCall
+	| printFunc
+	| variableReAssignStmt) ;
 
 
 expr:
@@ -71,6 +78,8 @@ variableStmt:
 	| type VARIABLE_T ASSIGN_T (value | arithmExpr) END_LINE_T
 	| STRING_TYPE_T VARIABLE_T ASSIGN_T  STRING_T  END_LINE_T;
 
+variableReAssignStmt:
+    VARIABLE_T ASSIGN_T ((value | arithmExpr) | logicExpr  | STRING_T ) END_LINE_T;
 
 value:
     VARIABLE_T
@@ -105,13 +114,17 @@ logicalTerm:
 
 
 number:
-    INT_T;
+    INT_T
+    |DOUBLE_T;
+
 
 type:
      numberType;
 
 numberType:
-     INT_TYPE_T;
+     INT_TYPE_T
+     | DOUBLE_TYPE_T;
+
 
 
 
@@ -132,3 +145,8 @@ funcStmt:
 
 funcCall:
     VARIABLE_T LBRACKET_T RBRACKET_T END_LINE_T;
+
+
+printFunc:
+    PRINT_T LBRACKET_T (STRING_T | (STRING_T COMMA_T VARIABLE_T) | VARIABLE_T) RBRACKET_T END_LINE_T;
+

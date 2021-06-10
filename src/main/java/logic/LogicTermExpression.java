@@ -92,7 +92,7 @@ public class LogicTermExpression {
                 return firstValue <= secondValue;
             }
             case EQUAL: {
-                System.out.println("evaluate eq = " + firstValue.equals(secondValue));
+//                System.out.println("evaluate eq = " + firstValue.equals(secondValue));
                 return firstValue.equals(secondValue);
 
             }

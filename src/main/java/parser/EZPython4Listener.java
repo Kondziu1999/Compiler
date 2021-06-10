@@ -68,6 +68,16 @@ public interface EZPython4Listener extends ParseTreeListener {
 	 */
 	void exitVariableStmt(EZPython4Parser.VariableStmtContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link EZPython4Parser#variableReAssignStmt}.
+	 * @param ctx the parse tree
+	 */
+	void enterVariableReAssignStmt(EZPython4Parser.VariableReAssignStmtContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link EZPython4Parser#variableReAssignStmt}.
+	 * @param ctx the parse tree
+	 */
+	void exitVariableReAssignStmt(EZPython4Parser.VariableReAssignStmtContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link EZPython4Parser#value}.
 	 * @param ctx the parse tree
 	 */
@@ -207,4 +217,14 @@ public interface EZPython4Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitFuncCall(EZPython4Parser.FuncCallContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link EZPython4Parser#printFunc}.
+	 * @param ctx the parse tree
+	 */
+	void enterPrintFunc(EZPython4Parser.PrintFuncContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link EZPython4Parser#printFunc}.
+	 * @param ctx the parse tree
+	 */
+	void exitPrintFunc(EZPython4Parser.PrintFuncContext ctx);
 }

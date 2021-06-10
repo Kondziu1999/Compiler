@@ -26,7 +26,7 @@ public class WhileOrIf {
 
             var statement = new Statement(currentElement);
             statements.push(statement);
-            System.out.println(currentElement.getText());
+//            System.out.println(currentElement.getText());
         }
     }
 

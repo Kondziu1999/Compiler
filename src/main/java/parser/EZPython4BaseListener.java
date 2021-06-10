@@ -88,6 +88,18 @@ public class EZPython4BaseListener implements EZPython4Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterVariableReAssignStmt(EZPython4Parser.VariableReAssignStmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitVariableReAssignStmt(EZPython4Parser.VariableReAssignStmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterValue(EZPython4Parser.ValueContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -251,6 +263,18 @@ public class EZPython4BaseListener implements EZPython4Listener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitFuncCall(EZPython4Parser.FuncCallContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterPrintFunc(EZPython4Parser.PrintFuncContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPrintFunc(EZPython4Parser.PrintFuncContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
