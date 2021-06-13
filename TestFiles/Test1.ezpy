@@ -1,0 +1,14 @@
+function factor(){
+    int w = 1;
+    int n = 1;
+
+    while(n<=x){
+        w = w*n;
+        n = n+1;
+    }
+
+    print(w);
+}
+
+int x = 4;
+factor();

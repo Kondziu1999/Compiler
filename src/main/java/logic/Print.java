@@ -36,7 +36,7 @@ public class Print {
                 }
             }
         }
-        System.out.println(textToPrint);
+        System.out.println(textToPrint.replaceAll("\"",""));
     }
 
 }

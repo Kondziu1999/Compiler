@@ -10,7 +10,7 @@
     </properties>
 
     <groupId>nl.arothuis</groupId>
-    <artifactId>test-antlr</artifactId>
+    <artifactId>EZPython4Intpr</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>

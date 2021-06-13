@@ -1,0 +1,39 @@
+int x1 = 0;
+int x2 = 1;
+int n = 0;
+int x = 1;
+int xHalf = 0;
+int rest = 0;
+
+function fibo(){
+    if(n == 0){
+        print(x1);
+    }
+    if(n == 1){
+        print(x2);
+    }
+    if(x <= n and n != 1 ){
+        x = x+1;
+        xHalf = x/2;
+        rest = x - xHalf*2;
+        if(rest == 1){
+            x2 = x1 + x2;
+            if(x == n){
+                print(x2);
+            }
+        }
+        if(rest == 0){
+            x1 = x1 + x2;
+            if(x == n){
+                print(x1);
+                x = x+1;
+            }
+        }
+        if(x < n){
+            fibo();
+        }
+    }
+}
+
+n = 20;
+fibo();

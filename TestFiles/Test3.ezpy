@@ -1,0 +1,6 @@
+int a = 4;
+bool x = a==4 and true;
+bool y = a==4 and false;
+
+print(x);
+print(y);

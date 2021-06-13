@@ -41,7 +41,7 @@ DOT_T:          '.';
 DOUBLE_T:	[0-9]+DOT_T[0-9]*;
 
 INT_T:		[1-9][0-9]* | '0';
-STRING_T:       QUOTE_T[a-zA-Z_0-9]*QUOTE_T ;
+STRING_T:       QUOTE_T(.)*QUOTE_T ;
 VARIABLE_T:	[a-zA-Z_][a-zA-Z0-9_]*;
 WHITESPACE_T:  	[ \t\r\n]+ -> skip;
 
