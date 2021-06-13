@@ -56,7 +56,7 @@ public class LogicTermExpression {
 
             }
             break;
-            case "≠": {
+            case "!=": {
                 this.operation = LogicTermOperations.NOTEQUAL;
             }
             break;

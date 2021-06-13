@@ -42,11 +42,10 @@ public class EZPython4Parser extends Parser {
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "'=='", "'\u00E2\u2030\u00A0'", "'<='", "'>='", "'>'", "'<'", "'+'", 
-			"'-'", "'*'", "'/'", "')'", "'('", "'='", "'true'", "'false'", "'or'", 
-			"'not'", "'and'", "';'", "'\n'", "'double'", "'int'", "'bool'", "'string'", 
-			"'\"'", "'function'", "'if'", "'while'", "'{'", "'}'", "'print'", "','", 
-			"'.'"
+			null, "'=='", "'!='", "'<='", "'>='", "'>'", "'<'", "'+'", "'-'", "'*'", 
+			"'/'", "')'", "'('", "'='", "'true'", "'false'", "'or'", "'not'", "'and'", 
+			"';'", "'\n'", "'double'", "'int'", "'bool'", "'string'", "'\"'", "'function'", 
+			"'if'", "'while'", "'{'", "'}'", "'print'", "','", "'.'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();

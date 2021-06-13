@@ -126,6 +126,7 @@ public class CalculationListener extends EZPython4BaseListener {
 
     @Override public void exitVariableStmt(EZPython4Parser.VariableStmtContext ctx) {
 
+
         var name = ctx.VARIABLE_T().getText();
         var type = ctx.type() == null ? ctx.BOOL_TYPE_T() == null ? ctx.STRING_TYPE_T() : ctx.BOOL_TYPE_T() : ctx.type();
         var value = ctx.value();
@@ -147,7 +148,7 @@ public class CalculationListener extends EZPython4BaseListener {
             break;
             case "int":
             {
-                var numberVariable = new NumberVariable(name, ((double) Math.round(arithmValues.pop())));
+                var numberVariable = new NumberVariable(name, (Math.floor(arithmValues.pop())));
                 NumbersVariableContainer.setVariable(numberVariable);
             }
             break;

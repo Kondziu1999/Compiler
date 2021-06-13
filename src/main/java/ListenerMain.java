@@ -1,4 +1,5 @@
 import data.StandardFunctions;
+import logic.ErrorListener;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
@@ -15,7 +16,7 @@ import java.io.*;
 public class ListenerMain {
     public static void main(String[] args) throws IOException {
         //String fileName = "Brod.hl";
-        String fileName = "ProgTest.txt";
+        String fileName = "ProgTest.ezpy";
         // String fileName = "circles.hl";
         String filePath = "C:\\Users\\Jutro_masz_kolosa\\Desktop\\Kominatoryka\\KompilkiSimple\\Kompilatory-main\\src\\main\\java\\parser\\" + fileName;
         File file = new File(filePath);
@@ -26,7 +27,7 @@ public class ListenerMain {
             // Open the input file stream
             fis = new FileInputStream(file);
 
-            // Create a CharStream that reads from standard input
+            // Creat    e a CharStream that reads from standard input
             ANTLRInputStream input = new ANTLRInputStream(fis);
 
             // Create a lexer that feeds off of input CharStream
@@ -38,12 +39,16 @@ public class ListenerMain {
             // Create a parser that feeds off the tokens buffer
             EZPython4Parser parser = new EZPython4Parser(tokens);
 
+            parser.removeErrorListeners();
+            parser.addErrorListener(new ErrorListener());
             // Begin parsing at rule prog
             ParseTree tree = parser.program();
 
             // Close the input file
             fis.close();
-
+            if(! ErrorListener.executeCode){
+                return;
+            }
             // Create a generic parse tree walker that can trigger callbacks
             ParseTreeWalker walker = new ParseTreeWalker();
             // Walk the tree created during the parse, trigger callbacks

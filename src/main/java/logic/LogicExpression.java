@@ -106,7 +106,7 @@ public class LogicExpression {
         || expr.getText().contains("<=")
         || expr.getText().contains(">=")
         || expr.getText().contains("==")
-        || expr.getText().contains("≠");
+        || expr.getText().contains("!=");
     }
 
     private boolean isLogical(ParseTree expr){

@@ -4,7 +4,7 @@ grammar EZPython4;
 
 
 EQ:             '==';
-NEQ:            '≠';
+NEQ:            '!=';
 LTE:            '<=';
 GTE:            '>=';
 GT:             '>';
@@ -77,6 +77,10 @@ variableStmt:
 	BOOL_TYPE_T VARIABLE_T ASSIGN_T logicExpr END_LINE_T
 	| type VARIABLE_T ASSIGN_T (value | arithmExpr) END_LINE_T
 	| STRING_TYPE_T VARIABLE_T ASSIGN_T  STRING_T  END_LINE_T;
+
+
+
+
 
 variableReAssignStmt:
     VARIABLE_T ASSIGN_T ((value | arithmExpr) | logicExpr  | STRING_T ) END_LINE_T;

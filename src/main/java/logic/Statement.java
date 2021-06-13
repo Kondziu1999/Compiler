@@ -87,7 +87,6 @@ public class Statement {
                     break;
                     default:
                     {
-
                         var valueReAssing = this.statementContext.getChild(2);
                         name = this.statementContext.getChild(0).getText();
 
@@ -97,8 +96,16 @@ public class Statement {
                             BoolsVariableContainer.setVariable(boolVariable);
                         }
                         else if(NumbersVariableContainer.getValue(name) != null){
+                            if(valueReAssing.getChild(0).getChildCount() >=3){
+                                valueReAssing = valueReAssing.getChild(0);
+                            }
                             var arithmExpr = new ArithmExpression(valueReAssing);
                             var numberVariable = new NumberVariable(name, arithmExpr.evaluate());
+
+                            if(Math.floor(NumbersVariableContainer.getValue(name)) - NumbersVariableContainer.getValue(name) == 0){ // check if it's an int
+                                numberVariable = new NumberVariable(name, Math.floor(arithmExpr.evaluate()));
+                            }
+
                             NumbersVariableContainer.setVariable(numberVariable);
                         }
                         else if(StringsVariableContainer.getValue(name) != null){

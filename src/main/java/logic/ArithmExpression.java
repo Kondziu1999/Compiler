@@ -33,6 +33,7 @@ public class ArithmExpression {
     }
     
     public ArithmExpression(ParseTree singleValueContext) {
+
         if(singleValueContext == null){
             this.firstValue = 0.0;
             return;
