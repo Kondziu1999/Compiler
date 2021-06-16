@@ -1,6 +1,10 @@
 int a = 4;
-bool x = a==4 and true;
-bool y = a==4 and false;
 
-print(x);
-print(y);
+function a(){
+    a = a + 1;
+    print("a = ",a);
+}
+
+while(a <= 10 and true){
+    a();
+}

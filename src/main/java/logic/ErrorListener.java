@@ -16,8 +16,7 @@ public class ErrorListener extends BaseErrorListener {
 
         List<String> stack = ((Parser) recognizer).getRuleInvocationStack();
         Collections.reverse(stack);
-        System.err.print("Error occured: ");
-        System.err.println("token " + "\"" + ((Token) offendingSymbol).getText() + "\""
+        System.err.println("Unexpected token " + "\"" + ((Token) offendingSymbol).getText() + "\""
                 +
                 " (line " + line + ", column " + (charPositionInLine + 1) + ")"
         );

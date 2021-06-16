@@ -35,5 +35,6 @@ function fibo(){
     }
 }
 
-n = 20;
+n = 19;
 fibo();
+

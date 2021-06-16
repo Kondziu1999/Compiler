@@ -28,18 +28,19 @@ public class Statement {
         else if (statementAsText.startsWith("if")) {
             this.type = StatementType.IF;
         }
-        else if (statementAsText.contains("=")) {
-            this.type = StatementType.VARIABLEASSIGNMENT;
-        }
         else if (statementAsText.startsWith("function")) {
             this.type = StatementType.FUNCTIONDECLARATION;
-        }
-        else if (statementAsText.contains("()")) {
-            this.type = StatementType.FUNCTIONCALL;
         }
         else if (statementAsText.contains("print")){
             this.type = StatementType.PRINT;
         }
+        else if (statementAsText.contains("=")) {
+            this.type = StatementType.VARIABLEASSIGNMENT;
+        }
+        else if (statementAsText.contains("()")) {
+            this.type = StatementType.FUNCTIONCALL;
+        }
+
     }
 
     public void evaluate() {
